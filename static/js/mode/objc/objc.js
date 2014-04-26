@@ -11,7 +11,7 @@
 CodeMirror.defineMode('Objective-C', function(config) {
 
   var specialChars = /[+\-\/\\*~<>=%|&?!.,:;^]/;
-  var keywords = /true|false|nil|self|super|thisContext|BOOL|int|protocol|property|protocol|synchronized|nonatomic|strong|copy|assign|for|while|return|implementation|interface|end/;
+  var keywords = /return|true|false|nil|self|super|thisContext|BOOL|int|protocol|property|protocol|synchronized|nonatomic|strong|copy|assign|for|while|implementation|interface|end\b/;
 
   var Context = function(tokenizer, parent) {
     this.next = tokenizer;
@@ -87,7 +87,8 @@ CodeMirror.defineMode('Objective-C', function(config) {
 
     } else if (specialChars.test(aChar)) {
       stream.eatWhile(specialChars);
-      token.name = 'operator';
+	  if (aChar !== ';')	  
+      	token.name = 'operator';
       token.eos = true;
 
     } else if (/\d/.test(aChar)) {
@@ -96,7 +97,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
 
     } else if (/[\w_]/.test(aChar)) {
       stream.eatWhile(/[\w\d_]/);
-      token.name = state.expectVariable ? (keywords.test(stream.current()) ? 'keyword' : 'variable') : null;
+      token.name = state.expectVariable ? (keywords.test(stream.current()) ? 'keyword' : 'variable') : 'null';
 
     } else {
       token.eos = state.expectVariable;
