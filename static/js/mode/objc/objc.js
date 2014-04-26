@@ -11,7 +11,7 @@
 CodeMirror.defineMode('Objective-C', function(config) {
 
   var specialChars = /[+\-\/\\*~<>=@%|&?!.,:;^]/;
-  var keywords = /true|false|nil|self|super|thisContext|@protocol|@synchronized|nonatomic|strong|copy|assign|for|while|if|return/;
+  var keywords = /true|false|nil|self|super|thisContext|BOOL|int|protocol|property|protocol|synchronized|nonatomic|strong|copy|assign|for|while|if|return|else/;
 
   var Context = function(tokenizer, parent) {
     this.next = tokenizer;
@@ -78,7 +78,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
     } else if (specialChars.test(aChar)) {
       stream.eatWhile(specialChars);
       token.name = 'operator';
-      token.eos = aChar !== ';'; // ; cascaded message expression
+      token.eos = true; // ; cascaded message expression
 
     } else if (/\d/.test(aChar)) {
       stream.eatWhile(/[\w\d]/);
