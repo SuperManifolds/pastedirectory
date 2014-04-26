@@ -50,7 +50,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
         stream.next();
         token = nextSymbol(stream, new Context(nextSymbol, context));
       } else {
-        if (stream.eatWhile(/[^ .{}\[\]()]/))
+        if (stream.eatWhile(/[^\n]/))
           token.name = 'string-2';
         else
           token.name = 'meta';
