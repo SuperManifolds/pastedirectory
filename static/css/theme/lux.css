@@ -1,0 +1,82 @@
+/*
+  lux Theme - Mozilla
+  Ported to CodeMirror by Peter Kroon <plakroon@gmail.com>
+  Report bugs/issues here: https://github.com/marijnh/CodeMirror/issues
+  GitHub: @peterkroon
+
+  The lux theme is inspired on the displayed code examples at: https://developer.mozilla.org/en-US/docs/Web/CSS/animation
+
+*/
+.cm-s-lux.CodeMirror {
+	color: #999;
+	background-color: #fff; 
+	font-family: 'Menlo', 'Inconsolata', monospace;
+	font-size: 12px;
+	line-height: 1.5;
+	min-height: 99% !important;
+}
+.cm-s-lux .CodeMirror-selected { background: #cfc !important; }
+
+.cm-s-lux .CodeMirror-gutters {
+	background: #e3e3e3;
+	color: #333;
+ 	padding:0 15px 20px 10px;
+}
+.cm-s-lux .CodeMirror-linenumber { color: #aaa; margin-left: 3px; }
+div.cm-s-lux .CodeMirror-cursor { border-left: 2px solid #222; }
+
+.cm-s-lux .cm-keyword {  color: #6262FF; }
+.cm-s-lux .cm-atom { color: #F90; }
+.cm-s-lux .cm-number { color:  #ca7841; }
+.cm-s-lux .cm-def { color: #8DA6CE; }
+.cm-s-lux span.cm-variable-2, .cm-s-lux span.cm-tag { color: #690; }
+.cm-s-lux span.cm-variable-3, .cm-s-lux span.cm-def { color: #07a; }
+
+.cm-s-lux .cm-variable { color: #07a; }
+.cm-s-lux .cm-property { color: #905; }
+.cm-s-lux .cm-qualifier { color: #690; }
+
+.cm-s-lux .cm-operator { color: #cda869; }
+.cm-s-lux .cm-comment { color:#777; font-weight:normal; }
+.cm-s-lux .cm-string { color:#07a; font-style:italic; }
+.cm-s-lux .cm-string-2 { color:#bd6b18; } /*?*/
+.cm-s-lux .cm-meta { color: #000; } /*?*/
+.cm-s-lux .cm-builtin { color: #9B7536; } /*?*/
+.cm-s-lux .cm-tag { color: #997643; }
+.cm-s-lux .cm-attribute { color: #d6bb6d; } /*?*/
+.cm-s-lux .cm-header { color: #FF6400; }
+.cm-s-lux .cm-hr { color: #AEAEAE; }
+.cm-s-lux .cm-link {   color:#ad9361; font-style:italic; text-decoration:none; }
+.cm-s-lux .cm-error { border-bottom: 1px solid red; }
+
+.CodeMirror-scroll {
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+div.cm-s-lux .CodeMirror-activeline-background {background: #d0dcde;}
+div.cm-s-lux span.CodeMirror-matchingbracket {outline:1px solid grey; color: inherit;}
+
+.cm-s-lux.CodeMirror { 
+	background: #f5f5f5;
+}
+	
+/* paste.directory overrides */
+body {
+	background: #f5f5f5;
+}
+
+header,
+#more {
+	background: #6480a5;
+}
+
+select {
+	background: #7e9bc3;
+	border: 1px solid #6480a5;
+}
+
+.sel:before,
+.sel:after {
+	background: #7e9bc3;
+}

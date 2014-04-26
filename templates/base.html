@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		{% block head %}
+		{% endblock %}
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/codemirror.css') }}" />
+		<link rel="stylesheet" type="text/css" href="static/css/theme/{{theme}}.css" data-rel="theme" />
+		<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<meta name="syntax-language" data="{{ mirrorlang.MIME }}" />
+	</head>
+	<body>
+		{% block mbody %}
+		{% endblock %}
+		<div id="container">
+			<header>
+				<div class="header_left">
+					<a href="/"><h1>Paste Directory</h1></a>
+				</div>
+				<div class="header_right">
+					<label class="sel">
+					<select id="expires" name="expires">
+						<option value="0">Never</option>
+						<option value="10">10 minutes</option>
+						<option value="60">1 hour</option>
+						<option value="1440">1 day</option>
+						<option value="43200">1 month</option>
+					</select>
+					</label>
+					<div class="onoffswitch">
+						<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+						<label class="onoffswitch-label" for="myonoffswitch">
+							<div class="onoffswitch-inner">
+								<div class="onoffswitch-active">
+									<div class="onoffswitch-switch">Light</div>
+								</div>
+								<div class="onoffswitch-inactive">
+									<div class="onoffswitch-switch">Dark</div>
+								</div>
+							</div>
+						</label>
+					</div>
+					<label class="sel">
+					<select id="languages" name="languages">
+					{% for language in common_languages %}
+						{% if language.disabled %}
+							<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
+						{% else %}
+							{% if language.API == mirrorlang.API %}
+							<option value="{{ language.API }}" selected>{{ language.name }}</option>
+							{% else %}
+							<option value="{{ language.API }}">{{ language.name }}</option>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+					<option disabled>-------------------</option> 
+					{% for language in languages %}
+						{% if language.disabled %}
+							<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
+						{% else %}
+							{% if language.API == mirrorlang.API %}
+							<option value="{{ language.API }}" selected>{{ language.name }}</option>
+							{% else %}
+							<option value="{{ language.API }}">{{ language.name }}</option>
+							{% endif %}
+						{% endif %}
+					{% endfor %}
+					</select>
+					</label>
+					<a id="nav-toggle" href="#"><span></span></a>
+					<button class="button" id="submitButton">Submit</button>
+				</div>
+				<div id="more">
+					<h3>Options</h3>
+					<input type="checkbox" name="self_destruct" id="self_destruct" />
+					<label for="self_destruct">Delete 5 minutes after opening</label><br />
+					<label for="encrypt">Encryption</label><br/>
+					<input type="password" name="encrypt" id="encrypt" />
+				</div>
+			</header>
+			<main>
+			</main>
+			<footer>
+			</footer>
+		</div>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/codemirror.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/matchbrackets.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/active-line.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/jcors-loader.min.js') }}"></script>
+		{% for mode in mirrorlang.modes %}
+			<script rel="syntax" type="text/javascript" src="static/js/mode/{{ mode }}/{{ mode }}.js"></script>
+		{% endfor %}
+		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+	</body>
+</html>

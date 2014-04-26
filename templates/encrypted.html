@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300' rel='stylesheet' type='text/css'>
+		<style type="text/css" media="screen">
+			body {
+				background: #000;
+				font-family: "Roboto", Helvetica, sans-serif;
+				font-weight: 100;
+				color: #fff;
+			}
+			h2 {
+				margin-bottom: 0;
+				font-size: 250%;
+				font-weight: 100;
+			}
+			main {
+				height: 200px;
+				width: 500px;
+				margin: auto;
+				position: absolute;
+  				top: 0; left: 0; bottom: 0; right: 0;
+			}
+			input[type="password"] {
+				width: 400px;
+				font-size: 150%;
+			}
+			input[type="submit"] {
+				display: inline-block;
+				vertical-align: top;
+				cursor: pointer;
+				min-width: 80px;
+				-webkit-appearance:none;
+				border: none;
+				background-color: #34537e;
+				color: #fff;
+				padding: 7px;
+				font-family: Roboto, Helvetica, Arial, sans-serif;
+				font-weight: 200;
+				font-size: 100%;
+			}
+
+			input[type="submit"]:hover {
+				background-color: #42699d;
+			}
+
+			input[type="submit"]:active {
+				background-color: #1d3658;
+			}
+
+			input[type="submit"]:disabled {
+				cursor: default;
+				background-color: #7c8ea8;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			{% if decryptFailed %}
+			<h2>Incorrect password</h2>
+			<p>Please enter the correct password to decrypt this paste.</p>
+			{% else %}
+			<h2>This post is encrypted</h2>
+			<p>You will need to enter the password to read it</p>
+			{% endif %}
+			<form name="decrypt" method="get" action="/{{ uploadid }}">
+				<input type="password" name="key" />
+				<input type="submit" />
+			</form>
+		</main>
+	</body>
+</html>

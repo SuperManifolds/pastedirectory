@@ -1,0 +1,63 @@
+/* Based on the theme at http://bonsaiden.github.com/JavaScript-Garden */
+
+/*<!--match-->*/
+.cm-s-nox span.CodeMirror-matchhighlight { background: #494949; }
+.cm-s-nox.CodeMirror-focused span.CodeMirror-matchhighlight { background: #314D67 !important; }
+
+/*<!--activeline-->*/
+.cm-s-nox .CodeMirror-activeline-background {background: #253540 !important;}
+
+.cm-s-nox.CodeMirror {
+	font-family: 'Menlo', 'Inconsolata', monospace;
+	font-size: 12px;
+	min-height: 99%;
+	line-height: 1.5;
+    background: #090c0f;
+    color: #D1EDFF;
+}
+
+.cm-s-nox.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+
+.cm-s-nox div.CodeMirror-selected {background: #314D67 !important;}
+.cm-s-nox .CodeMirror-gutters {
+	background: #0F192A;
+	border-right: 1px solid;
+}
+.cm-s-nox div.CodeMirror-gutters {
+  background-color:#171717;
+  box-shadow:0 0 10px hsla(0,0%,0%,.8);
+  padding:0 15px 20px 10px;
+  border-right:0;
+}
+.cm-s-nox .CodeMirror-linenumber {color: #D0D0D0;}
+.cm-s-nox .CodeMirror-cursor {
+    border-left: 1px solid #F8F8F0 !important;
+}
+
+.cm-s-nox span.cm-keyword {color: #7159D4;}
+.cm-s-nox span.cm-atom {color: #3399CC;}
+.cm-s-nox span.cm-number {color: #6BD68B;}
+.cm-s-nox span.cm-def {color: #DC61F2;}
+.cm-s-nox span.cm-variable {color: #3399CC;}
+.cm-s-nox span.cm-variable-2 {color: #3399CC;}
+.cm-s-nox span.cm-property {color: #F2F25E;}
+.cm-s-nox span.cm-operator {color: #7159D4;}
+.cm-s-nox span.cm-comment {color: #4A5066;}
+.cm-s-nox span.cm-string {color: #6BD68B;}
+.cm-s-nox span.cm-string-2 {color: #6BD68B;}
+.cm-s-nox span.cm-meta {color: #7159D4;}
+.cm-s-nox span.cm-qualifier {color: #7159D4;}
+.cm-s-nox span.cm-bracket {color: #FFFFFF;}
+
+.cm-s-nox span.cm-tag {color: #7159D4;}
+.cm-s-nox span.cm-link {color: #81ddff;}
+.cm-s-nox span.cm-error {background: #F92672; color: #F8F8F0;}
+
+.cm-s-nox .CodeMirror-matchingbracket {
+  font-weight: bold;
+  color: white !important;
+}
+.CodeMirror-scroll {
+  overflow-y:auto;
+  overflow-x: auto;
+}
