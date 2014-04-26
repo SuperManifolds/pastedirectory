@@ -10,8 +10,8 @@
 
 CodeMirror.defineMode('Objective-C', function(config) {
 
-  var specialChars = /[+\-\/\\*~<>=@%|&?!.,:;^]/;
-  var keywords = /true|false|nil|self|super|thisContext|BOOL|int|protocol|property|protocol|synchronized|nonatomic|strong|copy|assign|for|while|if|return|else/;
+  var specialChars = /[+\-\/\\*~<>=%|&?!.,:;^]/;
+  var keywords = /true|false|nil|self|super|thisContext|BOOL|int|protocol|property|protocol|synchronized|nonatomic|strong|copy|assign|for|while|return|implementation|interface/;
 
   var Context = function(tokenizer, parent) {
     this.next = tokenizer;
@@ -46,9 +46,14 @@ CodeMirror.defineMode('Objective-C', function(config) {
 			token = nextLineComment(stream, new Context(nextLineComment, context));			
 		}
 	  
-    } else if (aChar === '\'') {
-		token = nextString(stream, new Context(nextString, context));
-
+    } else if (aChar === '@') {
+		if(stream.eat('"')) {
+			token = nextString(stream, new Context(nextString, context));
+		} else {
+	        stream.eatWhile(specialChars);
+	        token.name = 'operator';
+	        token.eos = true;
+	  	}
     } else if (aChar === '#') {
       if (stream.peek() === '\'') {
         stream.next();
@@ -58,6 +63,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
           token.name = 'string-2';
         else
           token.name = 'meta';
+		  token.eos = true;
       }
     } else if (aChar === '$') {
       if (stream.next() === '<') {
@@ -71,7 +77,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
 
     } else if (/[\[\]{}()]/.test(aChar)) {
       token.name = 'bracket';
-      token.eos = /[\[{(]/.test(aChar);
+      token.eos = /[\[{(}]/.test(aChar);
 
       if (aChar === '[') {
         state.indentation++;
@@ -82,7 +88,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
     } else if (specialChars.test(aChar)) {
       stream.eatWhile(specialChars);
       token.name = 'operator';
-      token.eos = true; // ; cascaded message expression
+      token.eos = true;
 
     } else if (/\d/.test(aChar)) {
       stream.eatWhile(/[\w\d]/);
@@ -90,6 +96,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
 
     } else if (/[\w_]/.test(aChar)) {
       stream.eatWhile(/[\w\d_]/);
+	  token.eos = true;
       token.name = state.expectVariable ? (keywords.test(stream.current()) ? 'keyword' : 'variable') : null;
 
     } else {
@@ -110,8 +117,8 @@ CodeMirror.defineMode('Objective-C', function(config) {
   };
   
   var nextString = function(stream, context) {
-    stream.eatWhile(/[^']/);
-    return new Token('string', stream.eat('\'') ? context.parent : context, false);
+    stream.eatWhile(/[^"]/);
+    return new Token('string', stream.eat('"') ? context.parent : context, false);
   };
 
   var nextSymbol = function(stream, context) {
