@@ -39,18 +39,22 @@ CodeMirror.defineMode('Objective-C', function(config) {
     var token = new Token(null, context, false);
     var aChar = stream.next();
 
-    if (aChar === '"') {
-      token = nextComment(stream, new Context(nextComment, context));
-
+    if (aChar === '/') {
+		if(stream.eat('*')) {		
+			token = nextBlockComment(stream, new Context(nextBlockComment, context));
+		} else if (stream.eat('/')) {
+			token = nextLineComment(stream, new Context(nextLineComment, context));			
+		}
+	  
     } else if (aChar === '\'') {
-      token = nextString(stream, new Context(nextString, context));
+		token = nextString(stream, new Context(nextString, context));
 
     } else if (aChar === '#') {
       if (stream.peek() === '\'') {
         stream.next();
         token = nextSymbol(stream, new Context(nextSymbol, context));
       } else {
-        if (stream.eatWhile(/[^\n]/))
+        if (stream.eatWhile(/[^\n\/]/))
           token.name = 'string-2';
         else
           token.name = 'meta';
@@ -94,10 +98,15 @@ CodeMirror.defineMode('Objective-C', function(config) {
 
     return token;
   };
-
-  var nextComment = function(stream, context) {
-    stream.eatWhile(/[^"]/);
-    return new Token('comment', stream.eat('"') ? context.parent : context, true);
+  
+  var nextLineComment = function(stream, context) {
+    stream.eatWhile(/[^\n\/]/);	
+    return new Token('comment', context.parent, true);
+  };
+  
+  var nextBlockComment = function(stream, context) {
+    stream.eatWhile(/[^\/]/);
+    return new Token('comment', stream.eat('/') ? context.parent : context, true);
   };
   
   var nextString = function(stream, context) {
@@ -154,7 +163,8 @@ CodeMirror.defineMode('Objective-C', function(config) {
       return (state.indentation + i) * config.indentUnit;
     },
 
-    electricChars: ']'
+    electricChars: ']',
+    fold: "brace"
   };
 
 });
