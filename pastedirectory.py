@@ -157,10 +157,10 @@ def api_post():
 		), 405
 	
 def getServerLink(request):
-	if parser.get('webserver', 'wsgi'):
+	if parser.get('webserver', 'wsgi') is True:
 		return getRequestProtocol(request) + "://" + request.environ['SERVER_NAME'] + "/"
 	else:
-		return getRequestProtocol(request) + "://" + parset.get('webserver', 'host') + ":5000/"
+		return getRequestProtocol(request) + "://" + parser.get('webserver', 'host') + ":5000/"
 		
 def getRequestProtocol(request):
 	if 'wsgi.url_scheme' in request.environ:
