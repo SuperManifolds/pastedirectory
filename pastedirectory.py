@@ -1,13 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import uuid
-from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect
+from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect, Blueprint
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from time import strftime
 from security import AESEncryption
 from ConfigParser import SafeConfigParser
+from error_handlers import error_handlers
 import hashlib
 import urllib
 import os
@@ -22,6 +23,7 @@ parser.read('config.ini')
 
 
 app = Flask(__name__)
+app.register_blueprint(error_handlers)
 
 if parser.get('webserver', 'force_https'):
 	try:
@@ -168,49 +170,6 @@ def getRequestProtocol(request):
 	else:
 		return 'http'
 
-@app.errorhandler(401)
-def page_not_found(error):
-	return render_template('errors/401.html'), 401
-
-@app.errorhandler(403)
-def page_not_found(error):
-	return render_template('errors/403.html'), 403
-
-@app.errorhandler(404)
-def page_not_found(error):
-	return render_template('errors/404.html'), 404
-
-@app.errorhandler(415)
-def page_not_found(error):
-	return render_template('errors/415.html'), 415
-
-@app.errorhandler(416)
-def page_not_found(error):
-	return render_template('errors/416.html'), 416
-
-@app.errorhandler(417)
-def page_not_found(error):
-	return render_template('errors/417.html'), 417
-
-@app.errorhandler(418)
-def page_not_found(error):
-	return render_template('errors/418.html'), 418
-
-@app.errorhandler(426)
-def page_not_found(error):
-	return render_template('errors/426.html'), 426
-
-@app.errorhandler(428)
-def page_not_found(error):
-	return render_template('errors/428.html'), 428
-
-@app.errorhandler(429)
-def page_not_found(error):
-	return render_template('errors/429.html'), 429
-
-@app.errorhandler(500)
-def internal_server_error(error):
-	return render_template('errors/500.html', ERROR_MSG=error), 500
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')
