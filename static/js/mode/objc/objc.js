@@ -67,14 +67,13 @@ CodeMirror.defineMode('Objective-C', function(config) {
       }
 
     } else if (/[\[\]{}()]/.test(aChar)) {
-      token.name = 'bracket';
-      token.eos = /[\[{(}]/.test(aChar);
-
-      if (aChar === '[') {
-        state.indentation++;
-      } else if (aChar === ']') {
-        state.indentation = Math.max(0, state.indentation - 1);
-      }
+		token.name = 'bracket';
+		token.eos = true;
+		if (aChar === '[') {
+			state.indentation++;
+		} else if (aChar === ']') {
+			state.indentation = Math.max(0, state.indentation - 1);
+		}
 
     } else if (specialChars.test(aChar)) {
       stream.eatWhile(specialChars);
@@ -86,6 +85,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
 		stream.eatWhile(/[\w\d_]/);	
 		token.name = state.expectVariable ? (keywords.test(stream.current()) ? 'keyword' : 'variable') : 'null';
 		token.eos = state.expectVariable ? (keywords.test(stream.current()) ? true : false) : false;
+
 	} else {
       token.eos = state.expectVariable;
     }
