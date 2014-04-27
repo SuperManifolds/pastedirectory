@@ -11,8 +11,9 @@
 CodeMirror.defineMode('Objective-C', function(config) {
 
   var specialChars = /[+\-\/\\~<>=%|&?!;^]/;
-  var keywords = /\breturn\b|\bclass\b|\bprivate\b|\bvoid\b|\bstatic\b|\bself\b|\bsuper\b|\bprotocol\b|\bproperty\b|\bprotocol\b|\bsynchronized\b|\bnonatomic\b|\bstrong\b|\bcopy\b|\bassign\b|\bselector\b|\bimplementation\b|\binterface\b|\bend\b/;
-  
+
+  var keywords = /\bclass\b|\bprivate\b|\bstatic\b|\bself\b|\bsuper\b|\bprotocol\b|\bproperty\b|\bprotocol\b|\bsynchronized\b|\bnonatomic\b|\bstrong\b|\bcopy\b|\bassign\b|\bselector\b|\bimplementation\b|\binterface\b|\bend\b|auto\b|\bif\b|\bbreak\b|\bint\b|\bcase\b|\blong\b|\bchar\b|\bregister\b|\bcontinue\b|\breturn\b|\bdefault\b|\bshort\b|\bdo\b|\bsizeof\b|\bdouble\b|\bstatic\b|\belse\b|\bstruct\b|\bentry\b|\bswitch\b|\bextern\b|\btypedef\b|\bfloat\b|\bunion\b|\bfor\b|\bunsigned\b|\bgoto\b|\bwhile\b|\benum\b|\bvoid\b|\bconst\b|\bsigned\b|\bvolatile\b|\bBOOL\b/;
+    
   var Context = function(tokenizer, parent) {
     this.next = tokenizer;
     this.parent = parent;
@@ -84,7 +85,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
     } else if (/[\w_]/.test(aChar)) {
 		stream.eatWhile(/[\w\d_]/);	
 		token.name = state.expectVariable ? (keywords.test(stream.current()) ? 'keyword' : 'variable') : 'null';
-		token.eos = state.expectVariable ? (keywords.test(stream.current()) ? true : false) : false;
+		token.eos = state.expectVariable ? (keywords.test(stream.current()) ? false : false) : true;
 
 	} else {
       token.eos = state.expectVariable;
