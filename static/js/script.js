@@ -19,6 +19,9 @@ if (loadview) {
 		matchBrackets: true,
 		autofocus: true
 	});
+	if (window.location.hash) {
+		jumpToLine(window.location.hash.substring(1));
+	}
 } else {
 	myCodeMirror = CodeMirror(document.querySelector("main"), {
 		theme: getTheme,
@@ -127,6 +130,15 @@ document.getElementById("nav-toggle").addEventListener("click", function(e) {
 		document.getElementById("more").style.display = "block";
 	}
 }, false);
+
+function jumpToLine(line) {
+	if (line && !isNaN(Number(line))) {
+		myCodeMirror.setCursor(Number(line-1),0);
+		myCodeMirror.focus();
+		var cursor = document.querySelector(".CodeMirror-cursor");
+		cursor.scrollIntoView();
+    }
+}
 
 function createCookie(name, value, expires, path, domain) {
 	var cookie = name + "=" + value + ";";
