@@ -10,9 +10,10 @@
 
 CodeMirror.defineMode('Objective-C', function(config) {
 
-  var specialChars = /[+\-\/\\~<>=%|&?!;^]/;
-  var keywords = /\breturn\b|\bclass\b|\bprivate\b|\bvoid\b|\bstatic\b|\bself\b|\bsuper\b|\bprotocol\b|\bproperty\b|\bprotocol\b|\bsynchronized\b|\bnonatomic\b|\bstrong\b|\bcopy\b|\bassign\b|\bselector\b|\bimplementation\b|\binterface\b|\bend\b/;
-  
+  var specialChars = /[+\-\/\\~<>=%|&?!;:.,^]/;
+
+  var keywords = /\bclass\b|\bprivate\b|\bstatic\b|\bself\b|\bsuper\b|\bprotocol\b|\bproperty\b|\bprotocol\b|\bsynchronized\b|\bnonatomic\b|\bstrong\b|\bcopy\b|\bassign\b|\bselector\b|\bimplementation\b|\binterface\b|\bend\b|auto\b|\bbreak\b|\bint\b|\bcase\b|\blong\b|\bchar\b|\bregister\b|\bcontinue\b|\breturn\b|\bdefault\b|\bshort\b|\bdo\b|\bsizeof\b|\bdouble\b|\bstatic\b|\bstruct\b|\bentry\b|\bswitch\b|\bextern\b|\btypedef\b|\bfloat\b|\bunion\b|\bfor\b|\bunsigned\b|\bgoto\b|\bwhile\b|\benum\b|\bvoid\b|\bconst\b|\bsigned\b|\bvolatile\b|\bBOOL\b|\bYES\b|\bNO\b|\bnil\b|\bif\b|\belse/;
+    
   var Context = function(tokenizer, parent) {
     this.next = tokenizer;
     this.parent = parent;
@@ -77,15 +78,25 @@ CodeMirror.defineMode('Objective-C', function(config) {
 
     } else if (specialChars.test(aChar)) {
       stream.eatWhile(specialChars);
-	  if (aChar !== ';')	  
+	  if (aChar !== ';' && aChar !== ':' && aChar !== '.' && aChar !== ',')	  
       	token.name = 'operator';
       token.eos = true;
 
     } else if (/[\w_]/.test(aChar)) {
-		stream.eatWhile(/[\w\d_]/);	
-		token.name = state.expectVariable ? (keywords.test(stream.current()) ? 'keyword' : 'variable') : 'null';
-		token.eos = state.expectVariable ? (keywords.test(stream.current()) ? true : false) : false;
-
+		stream.eatWhile(/[\w\d_]/);
+		if(state.expectVariable) {
+			if(keywords.test(stream.current())) {
+				token.name = 'keyword';
+			} else {
+				token.name = 'variable';
+				if(stream.eat(/:/)) {
+					token.name = 'null';					
+					token.eos = true;
+				}
+			}						
+		} else {
+			token.name = 'null';			
+		}
 	} else {
       token.eos = state.expectVariable;
     }
