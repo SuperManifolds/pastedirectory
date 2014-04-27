@@ -43,6 +43,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
 	if (aChar === '/') {
 		if(stream.eat('*')) {		
 			token = nextBlockComment(stream, new Context(nextBlockComment, context));
+			token.eos = true;
 		} else if (stream.eat('/')) {
 			token = nextLineComment(stream, new Context(nextLineComment, context));			
 		}
