@@ -93,8 +93,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
 					token.name = 'null';					
 					token.eos = true;
 				}
-			}			
-					token.eos = true;			
+			}						
 		} else {
 			token.name = 'null';			
 		}
