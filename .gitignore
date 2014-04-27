@@ -2,3 +2,4 @@ venv/*
 exit/*
 config.ini
 *.pyc
+languages.json
