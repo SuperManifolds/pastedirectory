@@ -12,7 +12,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
 
   var specialChars = /[+\-\/\\~<>=%|&?!;:.,^]/;
 
-  var keywords = /\bclass\b|\bprivate\b|\bstatic\b|\bself\b|\bsuper\b|\bprotocol\b|\bproperty\b|\bprotocol\b|\bsynchronized\b|\bnonatomic\b|\bstrong\b|\bcopy\b|\bassign\b|\bselector\b|\bimplementation\b|\binterface\b|\bend\b|auto\b|\bif\b|\bbreak\b|\bint\b|\bcase\b|\blong\b|\bchar\b|\bregister\b|\bcontinue\b|\breturn\b|\bdefault\b|\bshort\b|\bdo\b|\bsizeof\b|\bdouble\b|\bstatic\b|\belse\b|\bstruct\b|\bentry\b|\bswitch\b|\bextern\b|\btypedef\b|\bfloat\b|\bunion\b|\bfor\b|\bunsigned\b|\bgoto\b|\bwhile\b|\benum\b|\bvoid\b|\bconst\b|\bsigned\b|\bvolatile\b|\bBOOL\b/;
+  var keywords = /\bclass\b|\bprivate\b|\bstatic\b|\bself\b|\bsuper\b|\bprotocol\b|\bproperty\b|\bprotocol\b|\bsynchronized\b|\bnonatomic\b|\bstrong\b|\bcopy\b|\bassign\b|\bselector\b|\bimplementation\b|\binterface\b|\bend\b|auto\b|\bif\b|\bbreak\b|\bint\b|\bcase\b|\blong\b|\bchar\b|\bregister\b|\bcontinue\b|\breturn\b|\bdefault\b|\bshort\b|\bdo\b|\bsizeof\b|\bdouble\b|\bstatic\b|\belse\b|\bstruct\b|\bentry\b|\bswitch\b|\bextern\b|\btypedef\b|\bfloat\b|\bunion\b|\bfor\b|\bunsigned\b|\bgoto\b|\bwhile\b|\benum\b|\bvoid\b|\bconst\b|\bsigned\b|\bvolatile\b|\bBOOL\b|\bYES\b|\bNO\b|\bnil\b/;
     
   var Context = function(tokenizer, parent) {
     this.next = tokenizer;
@@ -91,7 +91,6 @@ CodeMirror.defineMode('Objective-C', function(config) {
 				token.name = 'variable';
 				if(stream.eat(/:/)) {
 					token.name = 'null';					
-					state.expectVariable = true;
 					token.eos = true;
 				}				
 			}			
