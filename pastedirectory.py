@@ -25,14 +25,14 @@ parser.read('config.ini')
 app = Flask(__name__)
 app.register_blueprint(error_handlers)
 
-if parser.get('webserver', 'force_https'):
+if parser.getboolean('webserver', 'force_https'):
 	try:
 		from flask_sslify import SSLify
 		sslify = SSLify(app, permanent=True)
 	except ImportError:
 		pass
 	
-if parser.get('application', 'debug'):
+if parser.getboolean('application', 'debug'):
 	app.debug = True
 
 app.secret_key = parser.get('application', 'secret_key')
@@ -159,7 +159,7 @@ def api_post():
 		), 405
 	
 def getServerLink(request):
-	if parser.get('webserver', 'wsgi') is True:
+	if parser.getboolean('webserver', 'wsgi'):
 		return getRequestProtocol(request) + "://" + request.environ['SERVER_NAME'] + "/"
 	else:
 		return getRequestProtocol(request) + "://" + parser.get('webserver', 'host') + ":5000/"
