@@ -10,9 +10,8 @@
 
 CodeMirror.defineMode('Objective-C', function(config) {
 
-  var specialChars = /[+\-\/\\~<>=%|&?!,:;^]/;
-  var keywords = /return|true|false|nil|self|super|NULL|thisContext|protocol|property|protocol|synchronized|nonatomic|strong|copy|assign|selector|implementation|interface|end\b/;
-  var secWord = false;
+  var specialChars = /[+\-\/\\~<>=%|&?!;^]/;
+  var keywords = /\breturn\b|\bclass\b|\bprivate\b|\bvoid\b|\bstatic\b|\bself\b|\bsuper\b|\bprotocol\b|\bproperty\b|\bprotocol\b|\bsynchronized\b|\bnonatomic\b|\bstrong\b|\bcopy\b|\bassign\b|\bselector\b|\bimplementation\b|\binterface\b|\bend\b/;
   
   var Context = function(tokenizer, parent) {
     this.next = tokenizer;
@@ -66,15 +65,6 @@ CodeMirror.defineMode('Objective-C', function(config) {
           token.name = 'meta';
 		  token.eos = true;
       }
-    } else if (aChar === '$') {
-      if (stream.next() === '<') {
-        stream.eatWhile(/[^ >]/);
-        stream.next();
-      }
-      token.name = 'string-2';
-
-    } else if (aChar === '|' && state.expectVariable) {
-      token.context = new Context(nextTemporaries, context);
 
     } else if (/[\[\]{}()]/.test(aChar)) {
       token.name = 'bracket';
@@ -117,7 +107,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
       }
       maybeEnd = (ch == "*");
     }
-    return new Token('comment', ctx, false);
+    return new Token('comment', ctx, true);
   };
   
   var nextString = function(stream, context) {
@@ -128,22 +118,6 @@ CodeMirror.defineMode('Objective-C', function(config) {
   var nextSymbol = function(stream, context) {
     stream.eatWhile(/[^']/);
     return new Token('string-2', stream.eat('\'') ? context.parent : context, false);
-  };
-
-  var nextTemporaries = function(stream, context) {
-    var token = new Token(null, context, false);
-    var aChar = stream.next();
-
-    if (aChar === '|') {
-      token.context = context.parent;
-      token.eos = true;
-
-    } else {
-      stream.eatWhile(/[^|]/);
-      token.name = 'variable';
-    }
-
-    return token;
   };
 
   return {
@@ -174,8 +148,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
       return (state.indentation + i) * config.indentUnit;
     },
 
-    electricChars: ']',
-    fold: "brace"
+    electricChars: ']'
   };
 
 });
