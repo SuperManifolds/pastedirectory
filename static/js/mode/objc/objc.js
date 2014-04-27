@@ -85,7 +85,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
     } else if (/[\w_]/.test(aChar)) {
 		stream.eatWhile(/[\w\d_]/);	
 		token.name = state.expectVariable ? (keywords.test(stream.current()) ? 'keyword' : 'variable') : 'null';
-		token.eos = state.expectVariable ? (keywords.test(stream.current()) ? false : false) : true;
+		token.eos = state.expectVariable ? (keywords.test(stream.current()) ? true : false) : true;
 
 	} else {
       token.eos = state.expectVariable;
