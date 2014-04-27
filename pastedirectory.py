@@ -18,6 +18,8 @@ import httplib2
 import re
 import os
 
+os.path.dirname(os.path.abspath(__file__))
+
 parser = SafeConfigParser()
 parser.read('config.ini')
 
