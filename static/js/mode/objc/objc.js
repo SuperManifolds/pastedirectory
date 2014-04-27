@@ -108,8 +108,15 @@ CodeMirror.defineMode('Objective-C', function(config) {
   };
   
   var nextBlockComment = function(stream, context) {
-    stream.eatWhile(/[^\/]/);
-    return new Token('comment', stream.eat('/') ? context.parent : context, true);
+    var maybeEnd = false, ch, ctx = context;
+    while (ch = stream.next()) {
+      if (ch == "/" && maybeEnd) {
+		ctx = context.parent;
+        break;
+      }
+      maybeEnd = (ch == "*");
+    }
+    return new Token('comment', ctx, false);
   };
   
   var nextString = function(stream, context) {
