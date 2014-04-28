@@ -272,11 +272,11 @@ h3 {
 }
 .onoffswitch-active .onoffswitch-switch:before {
     content: " "; position: absolute; top: 0; left: 46px; 
-    border-style: solid; border-color: #7e9bc3 transparent transparent #7e9bc3; border-width: 11.5px 6px;
+    border-style: solid; border-color: #7e9bc3 transparent transparent #7e9bc3; border-width: 12px 6px;
 }
 .onoffswitch-inactive .onoffswitch-switch:before {
     content: " "; position: absolute; top: 0; right: 46px; 
-    border-style: solid; border-color: transparent #040f1d #040f1d transparent; border-width: 11.5px 6px;
+    border-style: solid; border-color: transparent #040f1d #040f1d transparent; border-width: 12px 6px;
 }
 .onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
     margin-left: 0;
