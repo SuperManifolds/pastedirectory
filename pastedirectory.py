@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import uuid
 from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect, Blueprint
+from flask.ext.assets import Environment, Bundle
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
@@ -25,6 +26,8 @@ parser.read('config.ini')
 
 
 app = Flask(__name__)
+assets = Environment()
+assets.init_app(app)
 app.register_blueprint(error_handlers)
 
 if parser.getboolean('webserver', 'force_https'):

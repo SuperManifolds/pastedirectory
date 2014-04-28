@@ -85,13 +85,12 @@
 			<footer>
 			</footer>
 		</div>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/codemirror.js') }}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/matchbrackets.js') }}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/active-line.js') }}"></script>
-		<script type="text/javascript" src="{{ url_for('static', filename='js/jcors-loader.min.js') }}"></script>
+		{% assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js" %}
+    		<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+		{% endassets %}
 		{% for mode in mirrorlang.modes %}
-			<script rel="syntax" type="text/javascript" src="static/js/mode/{{ mode }}/{{ mode }}.js"></script>
+			<script rel="syntax" type="text/javascript" src="static/js/mode/{{ mode }}/{{ mode }}.js" async="true"></script>
 		{% endfor %}
-		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" async="true"></script>
 	</body>
 </html>
