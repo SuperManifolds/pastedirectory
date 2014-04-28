@@ -10,6 +10,12 @@ html, body {
 	min-height: 100%;
 }
 
+.warning {
+	line-height: 0.8;
+	font-size: 90%;
+	color: #ef5e5e;
+}
+
 header {
 	background: #1F2831;
 	height: 60px;
