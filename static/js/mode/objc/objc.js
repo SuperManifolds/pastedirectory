@@ -83,7 +83,7 @@ CodeMirror.defineMode('Objective-C', function(config) {
       	token.name = 'operator';
       token.eos = true;
 
-    } else if (/[\w_ ]/.test(aChar)) {
+    } else if (/[\w_]/.test(aChar)) {
 		stream.eatWhile(/[\w\d_]/);
 		if(state.expectVariable) {
 			if(keywords.test(stream.current())) {
@@ -95,6 +95,10 @@ CodeMirror.defineMode('Objective-C', function(config) {
 					token.name = 'null';					
 					token.eos = true;
 				}
+				if(stream.eat(/\(/) && token.name == 'variable') {
+					stream.backUp(1);
+					token.name = "def";
+				}								
 			}						
 		} else {
 			token.name = 'null';			
