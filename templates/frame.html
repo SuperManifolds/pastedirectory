@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		{% block head %}
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300' rel='stylesheet' type='text/css'>
+		{% endblock %}
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				{% block header %}
+				{% endblock %}
+			</header>
+			<main>
+				{% block content %}
+				{% endblock %}
+			</main>
+			<footer>
+				
+			</footer>
+		</div>
+		{% block scripts %}
+		{% endblock %}
+	</body>
+</html>
