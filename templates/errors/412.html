@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Error 403 - Forbidden</title>
-        <meta name="title" content="Error 403">
-        <meta name="description" content="Forbidden">
+        <title>Error 412 - Precondition Failed</title>
+        <meta name="title" content="Error 412">
+        <meta name="description" content="Precondition Failed">
         <meta charset="UTF-8" />
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <style type="text/css" media="screen">
@@ -82,11 +82,11 @@
         </style>
     </head>
     <body>
-		<div class="bkgrtext">403</div>
+		<div class="bkgrtext">412</div>
         <div id="container">
             <section>
-                <h1>Access to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is forbidden</h1>
-                <p>The request was a valid request, but the server is refusing to respond to it.</p>
+                <h1>The page <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> cannot satisfy the expectations of your client.</h1>
+				<p>One of the preconditions on the request could not be met.</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

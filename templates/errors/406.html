@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Error 403 - Forbidden</title>
-        <meta name="title" content="Error 403">
-        <meta name="description" content="Forbidden">
+        <title>Error 406 - Not Acceptable</title>
+        <meta name="title" content="Error 406">
+        <meta name="description" content="Not Acceptable">
         <meta charset="UTF-8" />
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <style type="text/css" media="screen">
@@ -82,11 +82,11 @@
         </style>
     </head>
     <body>
-		<div class="bkgrtext">403</div>
+		<div class="bkgrtext">406</div>
         <div id="container">
             <section>
-                <h1>Access to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is forbidden</h1>
-                <p>The request was a valid request, but the server is refusing to respond to it.</p>
+                <h1><strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> cannot satisfy the expectations of your client.</h1>
+				<p>The accept headers requested something we were unable to provide.</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

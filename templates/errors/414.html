@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Error 403 - Forbidden</title>
-        <meta name="title" content="Error 403">
-        <meta name="description" content="Forbidden">
+        <title>Error 414 - Request URI Too Long</title>
+        <meta name="title" content="Error 414">
+        <meta name="description" content="Request URI Too long">
         <meta charset="UTF-8" />
         <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
         <style type="text/css" media="screen">
@@ -82,11 +82,11 @@
         </style>
     </head>
     <body>
-		<div class="bkgrtext">403</div>
+		<div class="bkgrtext">414</div>
         <div id="container">
             <section>
-                <h1>Access to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is forbidden</h1>
-                <p>The request was a valid request, but the server is refusing to respond to it.</p>
+                <h1>The URL in this request is too long.</h1>
+				<p>If you are trying to post data, consider using a POST request.</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>
