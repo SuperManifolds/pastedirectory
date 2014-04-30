@@ -8,7 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="static/css/theme/{{theme}}.css" data-rel="theme" />
 		<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-		<meta name="syntax-language" data="{{ mirrorlang.MIME }}" />
+		<meta name="syntax-language" data="{{ mirrorlang.MIME }}" >
 	</head>
 	<body>
 		{% block mbody %}
@@ -89,8 +89,8 @@
     		<script type="text/javascript" src="{{ ASSET_URL }}"></script>
 		{% endassets %}
 		{% for mode in mirrorlang.modes %}
-			<script rel="syntax" type="text/javascript" src="static/js/mode/{{ mode }}/{{ mode }}.js" async="true"></script>
+			<script rel="syntax" type="text/javascript" src="static/js/mode/{{ mode }}/{{ mode }}.js" async="async"></script>
 		{% endfor %}
-		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" async="true"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" async="async"></script>
 	</body>
 </html>
