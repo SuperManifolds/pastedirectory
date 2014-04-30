@@ -7,9 +7,7 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
 from time import strftime
-from security import AESEncryption
 from ConfigParser import SafeConfigParser
-from error_handlers import error_handlers
 import hashlib
 import urllib
 import os
@@ -19,16 +17,17 @@ import httplib2
 import re
 import os
 
-os.path.dirname(os.path.abspath(__file__))
+from modules.errors import error_controller
+from modules.admin import admin_controller
+from modules.security import AESEncryption
 
+os.path.dirname(os.path.abspath(__file__))
 parser = SafeConfigParser()
 parser.read('config.ini')
-
-
 app = Flask(__name__)
 assets = Environment()
 assets.init_app(app)
-app.register_blueprint(error_handlers)
+app.register_blueprint(error_controller)
 
 if parser.getboolean('webserver', 'force_https'):
 	try:
