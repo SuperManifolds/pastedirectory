@@ -21,3 +21,9 @@ for upload in uploads:
 			if destructTime <= datetime.now():
 				print("Deleting: " + str(upload["_id"]))
 				db.uploads.remove({"_id": upload["_id"] })
+
+accessattempts = db.accessattempts.find()
+for attempt in accessattempts:
+	expireTime = datetime.strptime(attempt["time"], "%Y-%m-%d %H:%M:%S") + timedelta(minutes=60)
+	if expireTime <= datetime.now():
+		db.accessattempts.remove({"_id": attempt["_id"]})

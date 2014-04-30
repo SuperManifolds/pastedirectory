@@ -80,17 +80,26 @@ def paste(uploadid):
 		if defaultexpire is None:
 			defaultexpire = 0
 		mirrorlang = db.languages.find_one({"API": post["language"]})
-		if request.headers.get('User-Agent').startswith("Textual") or "AppEngine" in request.headers.get('User-Agent'):
-			abort(403)
 		if post["self_destruct"] and hashlib.sha256(request.remote_addr).hexdigest() != post["author"]:
 			db.uploads.remove({ "id": uploadid })
 		if post.get("encrypted"):
+			accessAttempts = db.accessattempts.find({"id": uploadid, "author": hashlib.sha256(request.remote_addr).hexdigest()}).count()
+			if accessAttempts == 5:
+				return render_template('encrypted.html',
+										   uploadid=uploadid,
+										   decryptFailed=True,
+										   locked=True)
 			if request.args.get("key"):
 				postData = AESEncryption().decode(urllib.unquote(request.args.get("key")), post["data"])
 				if postData:
+					db.accessattempts.remove({"id": uploadid, "author": hashlib.sha256(request.remote_addr).hexdigest()})
 					post["data"] = postData
 				else:
-					return render_template('encrypted.html', uploadid=uploadid, decryptFailed=True)
+					db.accessattempts.insert({"id": uploadid, "author": hashlib.sha256(request.remote_addr).hexdigest(), "time": strftime("%Y-%m-%d %H:%M:%S")})
+					return render_template('encrypted.html',
+										   uploadid=uploadid,
+										   decryptFailed=True,
+										   locked=accessAttempts == 4)
 			else:
 				return render_template('encrypted.html', uploadid=uploadid)
 					

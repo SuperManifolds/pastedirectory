@@ -17,9 +17,14 @@
 			main {
 				height: 200px;
 				width: 500px;
+				min-width: 40%;
 				margin: auto;
 				position: absolute;
   				top: 0; left: 0; bottom: 0; right: 0;
+			}
+			
+			main > * {
+				text-align: center;
 			}
 			input[type="password"] {
 				width: 400px;
@@ -57,16 +62,25 @@
 	<body>
 		<main>
 			{% if decryptFailed %}
-			<h2>Incorrect password</h2>
-			<p>Please enter the correct password to decrypt this paste.</p>
+				{% if locked %}
+				<h2>Too many incorrect password attempts</h2>
+				<p>You have entered the incorrect password too many times, you must wait an hour to try again.</p>
+				{% else %}
+				<h2>Incorrect password</h2>
+				<p>Please enter the correct password to decrypt this paste.</p>
+				<form name="decrypt" method="get" action="/{{ uploadid }}">
+					<input type="password" name="key" />
+					<input type="submit" />
+				</form>
+				{% endif %}
 			{% else %}
 			<h2>This post is encrypted</h2>
 			<p>You will need to enter the password to read it</p>
-			{% endif %}
 			<form name="decrypt" method="get" action="/{{ uploadid }}">
 				<input type="password" name="key" />
 				<input type="submit" />
 			</form>
+			{% endif %}
 		</main>
 	</body>
 </html>
