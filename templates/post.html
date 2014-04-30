@@ -6,8 +6,8 @@
 {% endblock %}
  
 {% block content %}
-# if post.self_destruct and post.author != requestaddress 
+% if post.self_destruct and post.author != requestaddress 
 <div class="notice">This paste has been set to be deleted 5 minutes after it is opened. </div>
-# endif
+% endif
 <textarea id="loadview">{{ post.data }}</textarea>
 {% endblock %}

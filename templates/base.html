@@ -37,29 +37,29 @@
 	</div>
 	<label class="sel">
 	<select id="languages" name="languages">
-	# for language in common_languages
-		# if language.disabled 
+	% for language in common_languages
+		% if language.disabled 
 			<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
-		# else
-			# if language.API == mirrorlang.API
+		% else
+			% if language.API == mirrorlang.API
 			<option value="{{ language.API }}" selected>{{ language.name }}</option>
-			# else
+			% else
 			<option value="{{ language.API }}">{{ language.name }}</option>
-			# endif 
-		# endif
-	# endfor 
+			% endif 
+		% endif
+	% endfor 
 	<option disabled>-------------------</option> 
-	# for language in languages
-		# if language.disabled
+	% for language in languages
+		% if language.disabled
 			<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
-		# else
-			# if language.API == mirrorlang.API
+		% else
+			% if language.API == mirrorlang.API
 			<option value="{{ language.API }}" selected>{{ language.name }}</option>
-			# else
+			% else
 			<option value="{{ language.API }}">{{ language.name }}</option>
-			# endif
-		# endif
-	# endfor
+			% endif
+		% endif
+	% endfor
 	</select>
 	</label>
 	<a id="nav-toggle" href="#"><span></span></a>
@@ -76,11 +76,11 @@
 {% endblock %}
 
 {% block scripts %}
-# assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js" 
+% assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js" 
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-# endassets
-# for mode in mirrorlang.modes 
+% endassets
+% for mode in mirrorlang.modes 
 <script rel="syntax" type="text/javascript" src="static/js/mode/{{ mode }}/{{ mode }}.js" async="async"></script>
-# endfor
+% endfor
 <script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" async="async"></script>
 {% endblock %}

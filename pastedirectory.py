@@ -25,7 +25,7 @@ os.path.dirname(os.path.abspath(__file__))
 parser = SafeConfigParser()
 parser.read('config.ini')
 app = Flask(__name__)
-app.jinja_env.line_statement_prefix = '#'
+app.jinja_env.line_statement_prefix = '%'
 assets = Environment()
 assets.init_app(app)
 app.register_blueprint(error_controller)
