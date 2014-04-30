@@ -56,17 +56,11 @@ CodeMirror.defineMode('Objective-C', function(config) {
 	        token.eos = true;
 	  	}
     } else if (aChar === '#') {
-      if (stream.peek() === '\'') {
-        stream.next();
-        token = nextSymbol(stream, new Context(nextSymbol, context));
-      } else {
         if (stream.eatWhile(/[^\n\/]/))
           token.name = 'string-2';
         else
           token.name = 'meta';
-		  token.eos = true;
-      }
-
+		token.eos = true;
     } else if (/[\[\]{}()]/.test(aChar)) {
 		token.name = 'bracket';
 		token.eos = true;
@@ -75,19 +69,16 @@ CodeMirror.defineMode('Objective-C', function(config) {
 		} else if (aChar === ']') {
 			state.indentation = Math.max(0, state.indentation - 1);
 		}
-
     } else if (specialChars.test(aChar)) {
       stream.eatWhile(specialChars);
-	  if (aChar !== ';' && aChar !== ':' && aChar !== '.' && aChar !== ',')	  
-      	token.name = 'operator';
+	  if (aChar !== ';' && aChar !== ':' && aChar !== '.' && aChar !== ',') token.name = 'operator';
       token.eos = true;
-
     } else if (/[\w_]/.test(aChar)) {
 		stream.eatWhile(/[\w\d_]/);
 		if(state.expectVariable) {
 			if(keywords.test(stream.current())) {
 				token.name = 'keyword';
-				token.eos = true;				
+				token.eos = true;
 			} else {
 				token.name = 'variable';
 				if(stream.eat(/:/)) {
@@ -100,12 +91,9 @@ CodeMirror.defineMode('Objective-C', function(config) {
 				}								
 			}						
 		} else {
-			token.name = 'null';			
+			token.name = 'null';		
 		}
-	} else {
-      token.eos = state.expectVariable;
-    }
-
+	}
     return token;
   };
   
