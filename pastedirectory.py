@@ -168,9 +168,7 @@ def api_post():
 		else:
 			return json.dumps({ "result": { "id": uniqueid, "url": getServerLink(request) + uniqueid, "key": encryptionKey }})
 	else:
-		return json.dumps(
-			{"error": { "message": "Method not allowed. Please use HTTP POST", "code": "405" } }
-		), 405
+		abort(405)
 	
 def getServerLink(request):
 	if parser.getboolean('webserver', 'wsgi'):
