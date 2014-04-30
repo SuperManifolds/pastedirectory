@@ -34,13 +34,12 @@ CodeMirror.defineMode('IRC History', function(config) {
 	var next = function(stream, context, state) {
 		var token = new Token(null, context, false);
 		var aChar = stream.next();
-
-		if (aChar === '[') {
+		if (stream.pos == 1 && aChar === '[') {
 			token = nextIRCTime(stream, new Context(nextIRCTime, context));
-	    } else if (aChar === '<') {
+	    } else if (stream.pos == 12 && aChar === '<') {
 			stream.eat(/[@&+%!~]/);
 	    	token = nextIRCNick(stream, new Context(nextIRCNick, context));
-	    } else if (aChar === '*') {
+	    } else if (stream.pos == 12 && aChar === '*') {
 			if(stream.eat('*') && stream.eat('*')) {
 				token = nextIRCJPQ(stream, new Context(nextIRCJPQ, context));				
 			}
