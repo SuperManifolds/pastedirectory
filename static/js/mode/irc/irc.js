@@ -40,28 +40,38 @@ CodeMirror.defineMode('IRC History', function(config) {
 	    } else if (aChar === '<') {
 			stream.eat(/[@&+%!~]/);
 	    	token = nextIRCNick(stream, new Context(nextIRCNick, context));
-	    }
+	    } else if (aChar === '*') {
+			if(stream.eat('*') && stream.eat('*')) {
+				token = nextIRCJPQ(stream, new Context(nextIRCJPQ, context));				
+			}
+		}
 	
 		return token;
 	};
  
     var nextIRCTime = function(stream, context) {
-      stream.eatWhile(/[\d:]/);
-	  var tok = new Token('null', context.parent, true);
-	  if(stream.eat(']')) {
+		stream.eatWhile(/[\d:]/);
+		var tok = new Token('null', context.parent, true);
+		if(stream.eat(']')) {
 		  tok.name = 'comment';
-	  }
-	  return tok;
+		}
+		return tok;
     };
 	
     var nextIRCNick = function(stream, context) {
-      stream.eatWhile(/[\w\d_\-^{}\]\]`\\]/);
-	  var tok = new Token('null', context.parent, true);	  
-	  if(stream.eat('>')) {
+		stream.eatWhile(/[\w\d_\-^{}\]\]`\\]/);
+		var tok = new Token('null', context.parent, true);	  
+		if(stream.eat('>')) {
 		  tok.name = 'def';
-	  }
-	  return tok;
+		}
+		return tok;
     };
+	
+	var nextIRCJPQ = function(stream, context) {
+		stream.eatWhile(/.+/);
+		var tok = new Token('string-2', context.parent, true);	  
+		return tok;		
+	}
 	 
     return {
       startState: function() {
