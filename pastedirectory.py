@@ -18,6 +18,7 @@ import re
 import os
 
 from modules.errors import error_controller
+from modules.admin import admin_controller
 from modules.security import AESEncryption
 
 os.path.dirname(os.path.abspath(__file__))
