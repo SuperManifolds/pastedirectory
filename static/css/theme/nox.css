@@ -50,8 +50,11 @@
 .cm-s-nox span.cm-bracket {color: #FFFFFF;}
 
 .cm-s-nox span.cm-tag {color: #7159D4;}
-.cm-s-nox span.cm-link {color: #81ddff;}
+.cm-s-nox span.cm-link {color: #739ed9; cursor: pointer;}
 .cm-s-nox span.cm-error {background: #F92672; color: #F8F8F0;}
+
+.cm-s-nox span.cm-link:hover {color: #a7c5ef}
+.cm-s-nox span.cm-link:active {color: ##4971a8}
 
 .cm-s-nox .CodeMirror-matchingbracket {
   font-weight: bold;

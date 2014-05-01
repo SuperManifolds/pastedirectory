@@ -18,7 +18,6 @@ import re
 import os
 
 from modules.errors import error_controller
-from modules.admin import admin_controller
 from modules.security import AESEncryption
 
 os.path.dirname(os.path.abspath(__file__))
@@ -29,6 +28,7 @@ app.jinja_env.line_statement_prefix = '%'
 assets = Environment()
 assets.init_app(app)
 app.register_blueprint(error_controller)
+app.register_blueprint(admin_controller)
 
 if parser.getboolean('webserver', 'force_https'):
 	try:

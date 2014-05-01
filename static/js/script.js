@@ -17,7 +17,8 @@ if (loadview) {
 		lineNumbers: true,
 		styleActiveLine: true,
 		matchBrackets: true,
-		autofocus: true
+		autofocus: true,
+		makeLinksClickable: true
 	});
 	if (window.location.hash) {
 		jumpToLine(window.location.hash.substring(1));
@@ -30,7 +31,8 @@ if (loadview) {
 		styleActiveLine: true,
 		matchBrackets: true,
 		lineNumbers: true,
-		autofocus: true
+		autofocus: true,
+		makeLinksClickable: true
 	});
 }
 

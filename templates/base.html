@@ -76,7 +76,7 @@
 {% endblock %}
 
 {% block scripts %}
-% assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js" 
+% assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js", "js/click-links.js"
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 % endassets
 % for mode in mirrorlang.modes 
