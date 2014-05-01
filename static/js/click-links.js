@@ -16,6 +16,11 @@
 		}
 	});
 	function onmouseup(cm, e) {
-		window.open(e.target.innerHTML, '_blank');
+		if (!e.target.classList.contains("cm-link")) return;
+		var link = e.target.innerHTML;
+		if (!link.match(/http:\/\/[^ ]\)(.*)/)) {
+			link = "http://" + link;
+		}
+		window.open(link, '_blank');
 	}
 });
