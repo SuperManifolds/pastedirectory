@@ -18,7 +18,7 @@
 	function onmouseup(cm, e) {
 		if (!e.target.classList.contains("cm-link")) return;
 		var link = e.target.innerHTML;
-		if (!link.match(/http:\/\/[^ ]\)(.*)/)) {
+		if (link.match(/^www\./)) {
 			link = "http://" + link;
 		}
 		window.open(link, '_blank');
