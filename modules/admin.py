@@ -13,7 +13,7 @@ admin_controller = Blueprint('admin_controller', 'admin_controller',
 @admin_controller.route('/admin/exportlanguages')
 def exportlanguages():
 	tempfilename = tempfile.TemporaryFile()
-	subprocess.Popen(['mongoexport', '-d', 'pastedirectory', '-c', 'languages', '-o', tempfilename])
+	subprocess.Popen(['mongoexport', '-d', 'pastedirectory', '-c', 'languages_unstable', '-o', tempfilename])
 	with open (tempfilename, "r") as myfile:
 		return myfile.read()
 	
