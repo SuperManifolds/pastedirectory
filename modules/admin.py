@@ -11,7 +11,7 @@ admin_controller = Blueprint('admin_controller', 'admin_controller',
 
 @admin_controller.route('/admin/exportlanguages')
 def exportlanguages():
-	subprocess.Popen(['mongoexport', '-d', 'pastedirectory', '-c', 'languages', '-o', '/tmp/export.json'])
-	with open ("/tmp/export.json", "r") as myfile:
+	subprocess.Popen(['mongoexport', '-d', 'pastedirectory', '-c', 'languages', '-o', 'export.json'])
+	with open ("export.json", "r") as myfile:
 		return myfile.read()
 	
