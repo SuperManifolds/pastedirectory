@@ -3,7 +3,7 @@
 
 var getTheme = readCookie("theme");
 if (!getTheme) getTheme = "nox";
-if (getTheme === "lux") document.getElementById("myonoffswitch").checked = true;
+if (getTheme === "light") document.getElementById("myonoffswitch").checked = true;
 
 var myCodeMirror;
 
@@ -80,7 +80,7 @@ document.getElementById("expires").addEventListener("change", function(e) {
 }, false);
 
 document.getElementById("myonoffswitch").addEventListener("click", function(e) {
-	var newTheme = e.target.checked ? "lux" : "nox";
+	var newTheme = e.target.checked ? "light" : "dark";
 	var stylesheet = document.createElement('link');
 	var head = document.getElementsByTagName('head')[0];
 	stylesheet.setAttribute("href", "static/css/theme/" + newTheme + ".css");
@@ -90,6 +90,7 @@ document.getElementById("myonoffswitch").addEventListener("click", function(e) {
 	head.removeChild(head.querySelector("[data-rel='theme']"));
 	head.appendChild(stylesheet);
 	myCodeMirror.setOption("theme", newTheme);
+	document.body.className = newTheme;
 	createCookie("theme", newTheme, 3652);
 }, false);
 

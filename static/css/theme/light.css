@@ -1,0 +1,66 @@
+/* Based on the theme at http://bonsaiden.github.com/JavaScript-Garden */
+
+/*<!--match-->*/
+.cm-s-light span.CodeMirror-matchhighlight { background: #494949; }
+.cm-s-light.CodeMirror-focused span.CodeMirror-matchhighlight { background: #fff4c8 !important; }
+
+/*<!--activeline-->*/
+.cm-s-light .CodeMirror-activeline-background {background: #fafafa !important;}
+
+.cm-s-light.CodeMirror {
+	font-family: 'Menlo', 'Inconsolata', monospace;
+	font-size: 12px;
+	min-height: 99%;
+	line-height: 1.5;
+    background: #fffefe;
+    color: #000;
+}
+
+.cm-s-light.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+
+.cm-s-light div.CodeMirror-selected {background: #c9dfe2 !important;}
+.cm-s-light .CodeMirror-gutters {
+	background: #f7f6f6;
+	border-right: 1px solid;
+}
+.cm-s-light div.CodeMirror-gutters {
+  background-color:#f7f6f6;
+  box-shadow:0 0 10px hsla(0,0%,0%,.8);
+  padding:0 15px 20px 10px;
+  border-right:0;
+}
+.cm-s-light .CodeMirror-linenumber {color: #888787;}
+.cm-s-light .CodeMirror-cursor {
+    border-left: 1px solid #F8F8F0 !important;
+}
+
+.cm-s-light span.cm-keyword {color: #a071c1;}
+.cm-s-light span.cm-atom {color: #5072c7;}
+.cm-s-light span.cm-number {color: #4f8a7c;}
+.cm-s-light span.cm-def {color: #d24331;}
+.cm-s-light span.cm-variable {color: #5072c7;}
+.cm-s-light span.cm-variable-2 {color: #5072c7;}
+.cm-s-light span.cm-property {color: #f0ac2d;}
+.cm-s-light span.cm-operator {color: #a071c1;}
+.cm-s-light span.cm-comment {color: #a0a0a0;}
+.cm-s-light span.cm-string {color: #4f8a7c;}
+.cm-s-light span.cm-string-2 {color: #4f8a7c;}
+.cm-s-light span.cm-meta {color: #a071c1;}
+.cm-s-light span.cm-qualifier {color: #a071c1;}
+.cm-s-light span.cm-bracket {color: #000;}
+
+.cm-s-light span.cm-tag {color: #a071c1;}
+.cm-s-light span.cm-link {color: #3b6195; cursor: pointer;}
+.cm-s-light span.cm-error {background: #e6a0ba; color: #414141;}
+
+.cm-s-light span.cm-link:hover {color: #5685c6}
+.cm-s-light span.cm-link:active {color: ##163053}
+
+.cm-s-light .CodeMirror-matchingbracket {
+  font-weight: bold;
+  color: #5f5f5f !important;
+}
+.CodeMirror-scroll {
+  overflow-y:auto;
+  overflow-x: auto;
+}

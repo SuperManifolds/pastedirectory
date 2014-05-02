@@ -3,6 +3,7 @@
 import uuid
 from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect, Blueprint
 from flask.ext.assets import Environment, Bundle
+from flask.ext.scss import Scss
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
@@ -26,8 +27,7 @@ parser = SafeConfigParser()
 parser.read('config.ini')
 app = Flask(__name__)
 app.jinja_env.line_statement_prefix = '%'
-assets = Environment()
-assets.init_app(app)
+assets = Environment(app)
 app.register_blueprint(error_controller)
 app.register_blueprint(admin_controller)
 
@@ -41,6 +41,7 @@ if parser.getboolean('webserver', 'force_https'):
 if parser.getboolean('application', 'debug'):
 	app.debug = True
 
+Scss(app, static_dir='static/css', asset_dir='static/sass', load_paths=['static/sass'])
 app.secret_key = parser.get('application', 'secret_key')
 app.config['MAX_CONTENT_LENGTH'] = parser.get('webserver', 'uploadsize') * 1024 * 1024
 APPLICATION_NAME = parser.get('application', 'name')
@@ -54,7 +55,7 @@ def index():
 	languagelist = db.languages.find({"common": None}).sort("API", 1)
 	theme = request.cookies.get("theme")
 	if theme is None:
-		theme = "nox"
+		theme = "dark"
 	defaultlanguage = request.cookies.get("language")
 	if defaultlanguage is None:
 		defaultlanguage = "c"
@@ -76,7 +77,7 @@ def paste(uploadid):
 		languagelist = db.languages.find({"common": None}).sort("API", 1)
 		theme = request.cookies.get("theme")
 		if theme is None:
-			theme = "nox"
+			theme = "dark"
 		defaultexpire = request.cookies.get("expires")
 		if defaultexpire is None:
 			defaultexpire = 0

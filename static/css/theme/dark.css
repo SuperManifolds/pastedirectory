@@ -1,0 +1,66 @@
+/* Based on the theme at http://bonsaiden.github.com/JavaScript-Garden */
+
+/*<!--match-->*/
+.cm-s-dark span.CodeMirror-matchhighlight { background: #494949; }
+.cm-s-dark.CodeMirror-focused span.CodeMirror-matchhighlight { background: #314D67 !important; }
+
+/*<!--activeline-->*/
+.cm-s-dark .CodeMirror-activeline-background {background: #253540 !important;}
+
+.cm-s-dark.CodeMirror {
+	font-family: 'Menlo', 'Inconsolata', monospace;
+	font-size: 12px;
+	min-height: 99%;
+	line-height: 1.5;
+    background: #090c0f;
+    color: #D1EDFF;
+}
+
+.cm-s-dark.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+
+.cm-s-dark div.CodeMirror-selected {background: #314D67 !important;}
+.cm-s-dark .CodeMirror-gutters {
+	background: #0F192A;
+	border-right: 1px solid;
+}
+.cm-s-dark div.CodeMirror-gutters {
+  background-color:#171717;
+  box-shadow:0 0 10px hsla(0,0%,0%,.8);
+  padding:0 15px 20px 10px;
+  border-right:0;
+}
+.cm-s-dark .CodeMirror-linenumber {color: #D0D0D0;}
+.cm-s-dark .CodeMirror-cursor {
+    border-left: 1px solid #F8F8F0 !important;
+}
+
+.cm-s-dark span.cm-keyword {color: #7159D4;}
+.cm-s-dark span.cm-atom {color: #3399CC;}
+.cm-s-dark span.cm-number {color: #6BD68B;}
+.cm-s-dark span.cm-def {color: #DC61F2;}
+.cm-s-dark span.cm-variable {color: #3399CC;}
+.cm-s-dark span.cm-variable-2 {color: #3399CC;}
+.cm-s-dark span.cm-property {color: #F2F25E;}
+.cm-s-dark span.cm-operator {color: #7159D4;}
+.cm-s-dark span.cm-comment {color: #4A5066;}
+.cm-s-dark span.cm-string {color: #6BD68B;}
+.cm-s-dark span.cm-string-2 {color: #6BD68B;}
+.cm-s-dark span.cm-meta {color: #7159D4;}
+.cm-s-dark span.cm-qualifier {color: #7159D4;}
+.cm-s-dark span.cm-bracket {color: #FFFFFF;}
+
+.cm-s-dark span.cm-tag {color: #7159D4;}
+.cm-s-dark span.cm-link {color: #739ed9; cursor: pointer;}
+.cm-s-dark span.cm-error {background: #F92672; color: #F8F8F0;}
+
+.cm-s-dark span.cm-link:hover {color: #a7c5ef}
+.cm-s-dark span.cm-link:active {color: ##4971a8}
+
+.cm-s-dark .CodeMirror-matchingbracket {
+  font-weight: bold;
+  color: white !important;
+}
+.CodeMirror-scroll {
+  overflow-y:auto;
+  overflow-x: auto;
+}

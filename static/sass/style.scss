@@ -1,0 +1,372 @@
+@import 'bourbon/bourbon';
+$main-font: Roboto, Helvetica, Arial, sans-serif;
+$foreground-color-dark: #fff;
+$foreground-color-light: #fff;
+$page-background-dark: #090c0f;
+$page-background-light: #f5f5f5;
+$interface-background-dark: #1F2831;
+$interface-background-light: #6480a5;
+$control-background-dark: #040f1d;
+$control-background-light: #7e9bc3;
+
+body {
+	font-family: $main-font;
+	margin: 0;
+	height: 100%;
+	
+	&.dark {
+		color: $foreground-color-dark;
+		background: $page-background-dark; 
+	}
+	
+	&.light {
+		color: $foreground-color-light;
+		background: $page-background-light; 
+	}
+}
+
+
+h1, h2, h3 {
+	font-weight: 100;
+}
+
+#container {
+	min-height: 100%;
+}
+
+main {
+	@include box-sizing(border-box);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	padding-top: 60px;
+}
+
+a {
+	text-decoration: none;
+	.dark & { color: #739ed9; }
+	.light & { color: #3b6195; }
+	
+	&:hover {
+		text-decoration: underline;
+		.dark & { color: #a7c5ef; }
+		.light & { color: #5685c6; }
+	}
+		
+	&:active {
+		.dark & { color: #4971a8; }
+		.light & { color: #163053; }
+	}
+}
+
+header {
+	height: 60px;
+	position: relative;
+	z-index: 1;
+	
+	.left {
+		float: left;
+		margin-left: 30px;
+		
+		& h1 {
+			color: #fff;
+			line-height: 60px;
+			margin: 0;
+		}
+	}
+	
+	.right {
+		float: right;
+		margin-right: 30px;
+		
+		& > div,button {
+			display: inline-block;
+			vertical-align: top;
+		}
+		
+		& > button {
+			margin-top: 15px;
+		}
+	}
+	
+	body.dark & {
+		background: $interface-background-dark;
+	}
+	
+	body.light & {
+		background: $interface-background-light;
+	}
+}
+
+select {
+	@include appearance(none);
+	cursor: pointer;
+	box-sizing: border-box;
+	font-size: 100%;
+	margin-top: 19.5px;
+	height: 24px;
+	padding-left: 5px;
+	padding-right: 5px;
+	border-radius: 0;
+	text-overflow: '';
+	text-indent: 1px;
+	
+	.dark & {
+		background: $control-background-dark;
+		color: $foreground-color-dark;
+		border: 1px solid $control-background-dark;
+	}
+	
+	.light & {
+		background: $control-background-light;
+		color: $foreground-color-light;
+		border: 1px solid $control-background-light;
+	}
+}
+
+
+.sel {
+	position:relative;
+	
+	&:after {
+		@include transform(rotate(90deg));
+		@include position(absolute, 4px 8px null null);
+    	content:'<>';
+    	font:11px "Consolas", monospace;
+    	padding:0 0 2px;
+    	pointer-events:none;
+		
+		.dark & {
+			background: $control-background-dark;
+			color: $foreground-color-dark;
+			border-bottom: 1px solid $control-background-dark;
+		}
+		
+		.light & {
+			background: $control-background-light;
+			color: $foreground-color-light;
+			border-bottom: 1px solid $control-background-light;
+		}
+	}
+	
+	&:before {
+		@include position(absolute, 0 8px null null);
+		content: '';
+		width: 20px;
+		height: 19px;
+		pointer-events: none;
+		display: block;
+		
+		.dark & {
+			background: $control-background-dark;
+		}
+		
+		.light & {
+			background: $control-background-light;
+		}
+	}
+}
+
+.button {
+	@include appearance(none);
+	cursor: pointer;
+	min-width: 80px;
+	border: none;
+	padding: 5px;
+	font-family: $main-font;
+	font-weight: 200;
+	font-size: 100%;
+	background: #34537e;
+	
+	.dark & { color: $foreground-color-dark; }
+	.light & { color: $foreground-color-light; }
+	
+	&:hover {
+		background: #42699d;
+	}
+	
+	&:active {
+		background: #1d3658;
+	}
+	
+	&:disabled {
+		cursor: default;
+		background-color: #7c8ea8;
+	}
+}
+
+#nav-toggle {
+	vertical-align: middle;
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+}
+
+#nav-toggle span {
+	margin-top: 12px;
+}
+
+#nav-toggle span, 
+#nav-toggle span:before,
+#nav-toggle span:after {
+	border-radius: 1px;
+	height: 2px;
+	width: 20px;
+	background: white;
+	position: absolute;
+	display: block;
+	content: '';
+}
+
+#nav-toggle:hover > span,
+#nav-toggle:hover > span:before,
+#nav-toggle:hover > span:after {
+	background: #ccc;
+}
+
+#nav-toggle:hover .active > span,
+#nav-toggle:hover .active > span:before,
+#nav-toggle:hover .active > span:after {
+	background: #75c1d8;
+}
+
+#nav-toggle span:before {
+  top: -6px;
+}
+#nav-toggle span:after {
+  bottom: -6px; 
+}
+
+#more {
+	@include position(absolute, 0 59px null null);
+	box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 1);
+	display: none;
+	width: 250px;
+	height: 300px;
+	padding: 10px;
+	font-weight: 200;
+	margin-top: 60px;
+	font-size: 90%;
+	line-height: 1.5;
+	
+	& h3 {
+		margin: 0;
+		font-size: 140%;
+		text-align: center;
+	}
+	
+	.dark & { background: $interface-background-dark; }
+	.light & { background: $interface-background-light; }
+	
+	& input[type="password"] {
+		width: 230px;
+	}
+}
+
+.onoffswitch {
+	@include user-select(none);
+	position: relative;
+	width: 63px;
+	margin-top: 20px;
+}
+
+.onoffswitch-checkbox {
+	display: none;
+}
+.onoffswitch-label {
+    display: block;
+	overflow: hidden;
+	cursor: pointer;
+    border: 0px solid #999999;
+	border-radius: 0px;
+}
+.onoffswitch-inner {
+	@include transition(margin 0.3s ease-in 0s);
+    width: 200%;
+	margin-left: -100%;
+	
+	& > div {
+		@include box-sizing(border-box);
+		float: left;
+		position: relative;
+		width: 50%;
+		height: 23px;
+		padding: 0;
+		line-height: 23px;
+    	font-size: 100%;
+		color: white;
+	}
+	
+	& .onoffswitch-active {
+		padding-left: 15px;
+    	background-color: #d0dcde;
+		color: #FFFFFF;
+	}
+	
+	& .onoffswitch-inactive {
+    	padding-right: 15px;
+    	background-color: #314D67; color: #FFFFFF;
+    	text-align: right;
+	}
+}
+
+.onoffswitch-switch {
+	@include position(absolute, 0 null 0 null);
+    width: 46px;
+	margin: 0px;
+	text-align: center; 
+    border: 0px solid #999999;
+	border-radius: 0px;
+}
+.onoffswitch-active .onoffswitch-switch {
+    background: #7e9bc3;
+	left: 0;
+}
+.onoffswitch-inactive .onoffswitch-switch {
+    background: #040f1d;
+	right: 0;
+}
+.onoffswitch-active .onoffswitch-switch:before {
+	@include position(absolute, 0 null 0 46px);
+    content: " ";
+    border-style: solid;
+	border-color: #7e9bc3 transparent transparent #7e9bc3;
+	border-width: 12px 6px;
+}
+.onoffswitch-inactive .onoffswitch-switch:before {
+	@include position(absolute, 0 46px null null);
+    content: " ";
+    border-style: solid;
+	border-color: transparent #040f1d #040f1d transparent;
+	border-width: 12px 6px;
+}
+.onoffswitch-checkbox:checked + .onoffswitch-label .onoffswitch-inner {
+    margin-left: 0;
+}
+
+#loadview {
+	display: none;
+}
+
+.warning {
+	line-height: 0.8;
+	font-size: 90%;
+	
+	.dark & { color: #ef5e5e; }
+	.light & { color: #f28282; }
+}
+
+.notice {
+	color: #fff;
+	padding: 10px;
+	position: absolute;
+	bottom: 0;
+	z-index: 100;
+	background: rgba(145, 10, 10, 0.5);
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    select {padding-right:18px}
+}

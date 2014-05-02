@@ -2,11 +2,11 @@
 <html>
     <head>
 		{% block head %}
-		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}" />
+		<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
 		<link href='https://fonts.googleapis.com/css?family=Roboto:100,400,300' rel='stylesheet' type='text/css'>
 		{% endblock %}
 	</head>
-	<body>
+	<body class="{{theme}}">
 		<div id="container">
 			<header>
 				{% block header %}
