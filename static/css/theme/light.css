@@ -5,7 +5,7 @@
 .cm-s-light.CodeMirror-focused span.CodeMirror-matchhighlight { background: #fff4c8 !important; }
 
 /*<!--activeline-->*/
-.cm-s-light .CodeMirror-activeline-background {background: #fafafa !important;}
+.cm-s-light .CodeMirror-activeline-background {background: #e4faff !important;}
 
 .cm-s-light.CodeMirror {
 	font-family: 'Menlo', 'Inconsolata', monospace;
@@ -31,7 +31,7 @@
 }
 .cm-s-light .CodeMirror-linenumber {color: #888787;}
 .cm-s-light .CodeMirror-cursor {
-    border-left: 1px solid #F8F8F0 !important;
+    border-left: 1px solid #000000 !important;
 }
 
 .cm-s-light span.cm-keyword {color: #a071c1;}
