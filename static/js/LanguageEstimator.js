@@ -173,7 +173,7 @@ var languages = [
 	{
 		"name": "properties",
 		"caseSensitive": true,
-		"syntaxTokens": [/^(\s*)[\w._\-]*\s*(=|:).*$/gmi],
+		"syntaxTokens": [/^(\s*)[\w._]*\s*(=|:).[\w\\_\-:\/.,\(\)\|\{\}\[\] ]*$/gmi],
 		"keywordTokens": []
 	},
 	{
