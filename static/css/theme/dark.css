@@ -16,6 +16,10 @@
     color: #D1EDFF;
 }
 
+.CodeMirror-sizer {
+	margin-left: 60px !important;
+}
+
 .cm-s-dark.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
 
 .cm-s-dark div.CodeMirror-selected {background: #314D67 !important;}
