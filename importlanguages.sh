@@ -7,7 +7,7 @@ read -p "Are you sure you want to overwrite the language database y/n? " prompt
 						case $opt in
 							d)
 								printf "\n\nDownloading latest database version\n\n"
-								wget https://paste.directory/admin/exportlanguages -N -O languages.json
+								wget https://paste.directory/admin/exportlanguages -N -O languages.json --no-check-certificate
 								;;
 						esac
 					done
