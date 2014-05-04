@@ -127,6 +127,12 @@ var languages = [
 		"keywordTokens": ["base", "when", "body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
 	},
 	{
+		"name": "lua",
+		"caseSensitive": true,
+		"syntaxTokens": [/function [\w_.\:\-]*\(.*\)$/gm, /local [\w_\[\]]*\s*=\s*.+/gm, /^(local)? ([\w_\[\]]*\s*=\s*)?require"[\w_.]*"/g],
+		"keywordTokens": ["function", "end", "local", "then", "elseif", "until", "params"]
+	},
+	{
 		"name": "markdown",
 		"caseSensitive": true,
 		"syntaxTokens": [/(__|\*\*).*(__|\*\*)/g, /(!)?\[.*\]\(.*\)/g],
