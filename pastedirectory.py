@@ -58,7 +58,7 @@ def index():
 		theme = "dark"
 	defaultlanguage = request.cookies.get("language")
 	if defaultlanguage is None:
-		defaultlanguage = "c"
+		defaultlanguage = "auto"
 	mirrorlang = db.languages.find_one({"API": defaultlanguage})
 	defaultexpire = request.cookies.get("expires")
 	if defaultexpire is None:
