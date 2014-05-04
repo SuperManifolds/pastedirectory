@@ -1,9 +1,11 @@
 /* jslint browser: true */
 /* global CodeMirror */
+var currentLanguage = '';
 
 var getTheme = readCookie("theme");
-if (!getTheme) getTheme = "nox";
+if (!getTheme) getTheme = "dark";
 if (getTheme === "light") document.getElementById("myonoffswitch").checked = true;
+var estimator = new LanguageEstimator();
 
 var myCodeMirror;
 
@@ -12,7 +14,6 @@ if (loadview) {
 	myCodeMirror = CodeMirror(document.querySelector("main"), {
 		theme: getTheme,
 		value: decodeURIComponent(loadview.value),
-		mode: document.querySelector("meta[name='syntax-language']").getAttribute("data"),
 		lineWrapping: true,
 		lineNumbers: true,
 		styleActiveLine: true,
@@ -26,7 +27,6 @@ if (loadview) {
 } else {
 	myCodeMirror = CodeMirror(document.querySelector("main"), {
 		theme: getTheme,
-		mode: document.querySelector("meta[name='syntax-language']").getAttribute("data"),
 		lineWrapping: true,
 		styleActiveLine: true,
 		matchBrackets: true,
@@ -36,9 +36,42 @@ if (loadview) {
 	});
 }
 
-document.getElementById("languages").addEventListener("change", function(e) {
+loadLanguage(document.querySelector("meta[name='syntax-language']").getAttribute("data"));
+
+myCodeMirror.getWrapperElement().addEventListener("paste", function(e) {
+	var languageSelector = document.getElementById("languages");
+	var oldContents = myCodeMirror.getValue();
+	var pasteAttempts = 0;
+	var pasteTimer = setInterval(function() {
+		pasteAttempts++;
+		if (pasteAttempts > 60) clearInterval(pasteAttempts);
+		var textEditorContents = myCodeMirror.getValue();
+		if (textEditorContents !== oldContents) {
+			clearInterval(pasteTimer);
+			jumpToLine(1);
+			if (languageSelector.value == "auto") {
+				var getLanguage = estimator.estimateLanguage(myCodeMirror.getValue());
+				if (getLanguage !== null) {
+					currentLanguage = getLanguage;
+					languageSelector.options[languageSelector.selectedIndex].text = "Auto (" + getOptionTextByValue(languageSelector.options, getLanguage) + ")";
+					loadLanguage(getLanguage);
+				}
+			}
+		}
+	}, 50);
+});
+
+function getOptionTextByValue(options, value) {
+	for (var i = 0, len = options.length; i < len; i++) {
+		if (options[i].value == value) return options[i].text;
+	}
+	return null;
+}
+
+function loadLanguage(language) {
+	var languageSelector = document.getElementById("languages");
 	var xhr = new XMLHttpRequest();
-	xhr.open("GET", "api/language/get?lang=" + e.target.value, true);
+	xhr.open("GET", "api/language/get?lang=" +language, true);
 	xhr.withCredentials = true;
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4) {
@@ -46,7 +79,7 @@ document.getElementById("languages").addEventListener("change", function(e) {
 			
 			if (response[0].experimental) {
 				if (!confirm("Support for this language is still experimental and may not behave as expected. Use at your own risk.")) {
-					e.target.value = "text";
+					languageSelector.value = "text";
 					return;
 				}
 			}
@@ -65,7 +98,6 @@ document.getElementById("languages").addEventListener("change", function(e) {
 					};
 					script.src= 'static/js/mode/' + response[0].modes[i] + '/' + response[0].modes[i] + '.js';
 					body.appendChild(script);
-					createCookie("language", e.target.value, 3652);
 				}
 			} else {
 				alert("Error: " + response.error.message);
@@ -73,6 +105,13 @@ document.getElementById("languages").addEventListener("change", function(e) {
 		}
 	};
 	xhr.send();
+}
+
+
+document.getElementById("languages").addEventListener("change", function(e) {
+	currentLanguage = e.target.value;
+	createCookie("language", e.target.value, 3652);
+	loadLanguage(e.target.value);
 }, false);
 
 document.getElementById("expires").addEventListener("change", function(e) {
@@ -96,7 +135,7 @@ document.getElementById("myonoffswitch").addEventListener("click", function(e) {
 
 
 document.getElementById("submitButton").addEventListener("click", function(e) {
-	var pasteLanguage = document.getElementById("languages").value;
+	var pasteLanguage = (currentLanguage !== "auto" ? currentLanguage : "text");
 	var expireTime = document.getElementById("expires").value;
 	var encryptionKey = document.getElementById("encrypt").value;
 	var selfDestruct = document.getElementById("self_destruct").checked;
