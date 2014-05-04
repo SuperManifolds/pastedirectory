@@ -16,8 +16,8 @@
     color: #000;
 }
 
-.CodeMirror-sizer {
-	margin-left: 60px !important;
+.CodeMirror-code > div > pre {
+	padding-left: 10px;
 }
 
 .cm-s-light.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
