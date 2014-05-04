@@ -208,6 +208,12 @@ var languages = [
 		"keywordTokens": ["select", "from", "where", "order by", "limit", "offset", "create", "table", "database", "index", "row_number"]
 	},
 	{
+		"name": "tcl",
+		"caseSensitive": true,
+		"syntaxTokens": [/^package require [\w.]*$/gm, /^proc [\w]*::[\w]*\s*{.*} {/gm, /set [\w:]* .+/gm],
+		"keywordTokens": ["variable", "namespace", "bind", "proc"]
+	},
+	{
 		"name": "vb",
 		"caseSensitive": true,
 		"syntaxTokens": [/imports\s*([[\w_\.]*);/g, /(Public|Private)?\s*(Class|Sub)\s*([[\w_\.]*)\(.*\)(.*)End Sub/g],
