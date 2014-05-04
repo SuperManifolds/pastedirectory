@@ -6,9 +6,9 @@
 {% endblock %}
 
 {% block header_right %}
-<form action="http://{{ request.environ['SERVER_NAME'] }}{{request.path}}/raw">
-    <input type="submit" value="View raw">
-</form>
+<a href="https://{{ request.environ['SERVER_NAME'] }}{{request.path}}/raw">
+   <button>View raw</button>
+</a>
 
 {{ super() }}
 {% endblock %}

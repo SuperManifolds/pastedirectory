@@ -80,7 +80,7 @@ header {
 		float: right;
 		margin-right: 30px;
 		
-		& > div,button,form {
+		& > div,button,a {
 			display: inline-block;
 			vertical-align: top;
 		}
@@ -88,7 +88,7 @@ header {
 		& > button {
 			margin-top: 15px;
 		}
-		& > form  {
+		& > a > button {
 			margin-top: 20px;
 		}
 	}
