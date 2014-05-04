@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 import uuid
-from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect, Blueprint
+from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect, Blueprint, Response
 from flask.ext.assets import Environment, Bundle
 from flask.ext.scss import Scss
 from pymongo import MongoClient
@@ -69,7 +69,9 @@ def index():
 						theme=theme,
 						mirrorlang=mirrorlang)
 
+
 @app.route('/<uploadid>')
+@app.route('/<uploadid>/raw')
 def paste(uploadid):
 	post = db.uploads.find_one({"id": uploadid})
 	if post:
@@ -104,7 +106,10 @@ def paste(uploadid):
 										   locked=accessAttempts == 4)
 			else:
 				return render_template('encrypted.html', uploadid=uploadid)
-					
+		
+		getRoute = request.url_rule
+		if '/raw' in getRoute.rule:
+			return Response(urllib.unquote(post["data"]), mimetype='text/plain')
 		return render_template('post.html',
 							languages=languagelist,
 							common_languages = common_languagelist,
