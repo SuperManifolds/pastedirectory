@@ -3,7 +3,7 @@ function LanguageEstimator() {
 		if (text.length > 100000) {
 			text= text.substring(0, 1000000);
 		}
-		text = text.replace(/\n|\r/g, "");
+		//text = text.replace(/\n|\r/g, "");
 		var languageResults = [];
 		var matchedHeader = null;
 		languages.forEach(function(language) {
@@ -71,6 +71,26 @@ var languages = [
 		"keywordTokens": ["body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
 	},
 	{
+		"name": "diff",
+		"caseSensitive": true,
+		"syntaxTokens": [/^index [A-Za-z0-9]*..[A-Za-z0-9]* [A-Za-z0-9]*$/gm, /^\@\@ [-+][0-9,.]* [-+][0-9,.]* \@\@/gm, /^([\+]|[\-]){1,3}/gm],
+		"keywordTokens": ["diff", "index", "@@"],
+		"headers": [/^@@ [-+][0-9,.]* [-+][0-9,.]* @@/gm]
+	},
+	{
+		"name": "html",
+		"caseSensitive": false,
+		"syntaxTokens": [/<\/?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/g],
+		"keywordTokens": ["meta", "img", "body", "div", "head", "html", "br", "class", "id", "header", "link", "script"],
+		"headers": [/<!DOCTYPE\s*html>/gi, /<!DOCTYPE\s*HTML\s*PUBLIC\s*"-\/\/W3C\/\/DTD\s*HTML/gi]
+	},
+	{
+		"name": "ini",
+		"caseSensitive": true,
+		"syntaxTokens": [/^\[[A-Za-z0-9_\-]*\]$/gm, /^[A-Za-z0-9_\-]*=.*$/],
+		"keywordTokens": []
+	},
+	{
 		"name": "irc",
 		"caseSensitive": false,
 		"syntaxTokens": [/^([\(\[])?([0-9\+\-\:TAPMtapm]){5,50}/gm, /<(.)?[A-Za-z0-9_\\\[\]\{\}\`\^\|]*>/g],
@@ -101,17 +121,28 @@ var languages = [
 		"keywordTokens": []
 	},
 	{
-		"name": "html",
-		"caseSensitive": false,
-		"syntaxTokens": [/<\/?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/g],
-		"keywordTokens": ["meta", "img", "body", "div", "head", "html", "br", "class", "id", "header", "link", "script"],
-		"headers": [/<!DOCTYPE\s*html>/gi, /<!DOCTYPE\s*HTML\s*PUBLIC\s*"-\/\/W3C\/\/DTD\s*HTML/gi]
+		"name": "less",
+		"caseSensitive": true,
+		"syntaxTokens": [/^@base:\s*.*;/gm, /([\.#])([A-Za-z0-9-_])*\(.*\) when \(.*\)(\s.*)?{/gm, /([\.#]?)([[a-zA-Z0-9_-]*)\(.*\);/gm],
+		"keywordTokens": ["base", "when", "body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
 	},
 	{
 		"name": "markdown",
 		"caseSensitive": true,
-		"syntaxTokens": [/(__|\*\*).*(__|\*\*)/g, /(!)?\[.*\]\(.*\)/g, ],
+		"syntaxTokens": [/(__|\*\*).*(__|\*\*)/g, /(!)?\[.*\]\(.*\)/g],
 		"keywordTokens": ["====", "----", "###"]
+	},
+	{
+		"name": "mssql",
+		"caseSensitive": false,
+		"syntaxTokens": [/SELECT [A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*/gmi, /SELECT TOP\([0-9]\)*[A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*/],
+		"keywordTokens": ["select", "from", "where", "order by", "limit", "offset", "create", "table", "database", "index"]
+	},
+	{
+		"name": "mysql",
+		"caseSensitive": false,
+		"syntaxTokens": [/SELECT [A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*/gmi],
+		"keywordTokens": ["select", "from", "where", "order by", "limit", "offset", "create", "table", "database", "index"]
 	},
 	{
 		"name": "objc",
@@ -149,7 +180,13 @@ var languages = [
 		"name": "scss",
 		"caseSensitive": true,
 		"syntaxTokens": [/\$[A-Za-z0-9-_]*:.*;/g, /@include\s*[A-Za-z0-9_-]*\(.*\);/, /([\.#:&]*?)([[a-zA-Z0-9_-]*)(\[.*\])?\s*\{\s*(.*)\}/g],
-		"keywordTokens": ["body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
+		"keywordTokens": ["@include", "@import", "@extend", "body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
+	},
+	{
+		"name": "sql",
+		"caseSensitive": false,
+		"syntaxTokens": [/SELECT [A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*\(.*/gmi],
+		"keywordTokens": ["select", "from", "where", "order by", "limit", "offset", "create", "table", "database", "index", "row_number"]
 	},
 	{
 		"name": "vb",
