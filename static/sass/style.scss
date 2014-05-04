@@ -80,13 +80,16 @@ header {
 		float: right;
 		margin-right: 30px;
 		
-		& > div,button {
+		& > div,button,form {
 			display: inline-block;
 			vertical-align: top;
 		}
 		
 		& > button {
 			margin-top: 15px;
+		}
+		& > form  {
+			margin-top: 20px;
 		}
 	}
 	
@@ -168,16 +171,29 @@ select {
 	}
 }
 
-.button {
+input[type="submit"],
+button {
 	@include appearance(none);
 	cursor: pointer;
-	min-width: 80px;
+	min-width: 60px;
 	border: none;
-	padding: 5px;
+	padding: 3px;
 	font-family: $main-font;
 	font-weight: 200;
-	font-size: 100%;
+	font-size: 75%;
 	background: #34537e;
+	
+	&.small {
+		font-size: 75%;
+		padding: 3px;
+		min-width: 50px;
+	}
+	
+	&.large {
+		font-size: 100%;
+		padding: 4px;
+		min-width: 80px;
+	}
 	
 	.dark & { color: $foreground-color-dark; }
 	.light & { color: $foreground-color-light; }

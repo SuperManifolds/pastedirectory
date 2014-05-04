@@ -4,6 +4,14 @@
 	<title>Paste Directory: {{ post.id }}</title>
 	{{ super() }}
 {% endblock %}
+
+{% block header_right %}
+<form action="http://{{ request.environ['SERVER_NAME'] }}{{request.path}}/raw">
+    <input type="submit" value="View raw">
+</form>
+
+{{ super() }}
+{% endblock %}
  
 {% block content %}
 % if post.self_destruct and post.author != requestaddress 

@@ -13,6 +13,7 @@
 	<a href="/"><h1>Paste Directory</h1></a>
 </div>
 <div class="right">
+	{% block header_right %}
 	<label class="sel">
 	<select id="expires" name="expires">
 		<option value="0">Never</option>
@@ -63,7 +64,8 @@
 	</select>
 	</label>
 	<a id="nav-toggle" href="#"><span></span></a>
-	<button class="button" id="submitButton">Submit</button>
+	<button class="large" id="submitButton">Submit</button>
+	{% endblock %}
 </div>
 <div id="more">
 	<h3>Options</h3>
