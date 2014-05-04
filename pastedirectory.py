@@ -74,7 +74,7 @@ def paste(uploadid):
 	post = db.uploads.find_one({"id": uploadid})
 	if post:
 		common_languagelist = db.languages.find({"common": True}).sort("API", 1)
-		languagelist = db.languages.find({"common": False}).sort("API", 1)
+		languagelist = db.languages.find({"common": {"$in": [False, None]}}).sort("API", 1)
 		theme = request.cookies.get("theme")
 		if theme is None:
 			theme = "dark"
