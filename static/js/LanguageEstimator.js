@@ -49,31 +49,31 @@ var languages = [
 	{
 		"name": "c",
 		"caseSensitive": true,
-		"syntaxTokens": [/([[a-zA-Z09]*)\s*([[a-zA-Z0-9_]*)\(.*\)\s*\{(.*)\}/g, /#include\s*[\"\<]([[a-zA-Z0-9_\-\.\/]*)[\"\>]/g],
+		"syntaxTokens": [/([[\w]*)\s*([[\w_]*)\(.*\)\s*\{(.*)\}/g, /#include\s*[\"\<]([[\w_\-\.\/]*)[\"\>]/g],
 		"keywordTokens": ["struct", "_Packed", "violatile", "typedef", "register", "extern", "sizeof", "auto", "#ifdef", "#endif", "#else"]
 	},
 	{
 		"name": "cplus",
 		"caseSensitive": true,
-		"syntaxTokens": [/([[a-zA-Z09]*)\s*([[a-zA-Z0-9_]*)::([[a-zA-Z0-9_]*)\(.*\)\s*\{(.*)/g, /([[a-zA-Z09]*)\s*([[a-zA-Z0-9_]*)\(.*\)\s*\{(.*)\}/g, /#include\s*[\"\<]([[a-zA-Z0-9_\-\.\/]*)[\"\>]/g],
+		"syntaxTokens": [/([[\w]*)\s*([[\w_]*)::([[\w_]*)\(.*\)\s*\{(.*)/g, /([[\w]*)\s*([[\w_]*)\(.*\)\s*\{(.*)\}/g, /#include\s*[\"\<]([[\w_\-\.\/]*)[\"\>]/g],
 		"keywordTokens": ["#ifndef", "#if", "#else", "#endif", "extern", "typedef", "namespace", "public:", "private:", "alignas", "alignof", "explicit", "const_cast", "constexpr"]
 	},
 	{
 		"name": "csharp",
 		"caseSensitive": true,
-		"syntaxTokens": [/using\s*([[a-zA-Z0-9_\.]*);/g, /(public|private|protected|internal)\s*(partial|static|abstract)?\s*([[a-zA-Z0-9_]*)\s*([[a-zA-Z0-9_\.]*)(\(.*\))?\s*(\:\s*([[a-zA-Z0-9_\.]*))\s*\{.*\}/g],
+		"syntaxTokens": [/using\s*([[\w_\.]*);/g, /(public|private|protected|internal)\s*(partial|static|abstract)?\s*([[\w_]*)\s*([[\w_\.]*)(\(.*\))?\s*(\:\s*([[\w_\.]*))\s*\{.*\}/g],
 		"keywordTokens": ["using", "namespace", "abstract", "sealed", "sizeof", "ushort", "interface", "protected", "throw", "extern", "override", "implicit", "delegate", "unchecked"]
 	},
 	{
 		"name": "css",
 		"caseSensitive": false,
-		"syntaxTokens": [/([\.#]?)([[a-zA-Z0-9_-]*)(\[.*\])?\s*\{\s*(.*)\}/g],
+		"syntaxTokens": [/([\.#]?)([[\w_-]*)(\[.*\])?\s*\{\s*(.*)\}/g],
 		"keywordTokens": ["body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
 	},
 	{
 		"name": "diff",
 		"caseSensitive": true,
-		"syntaxTokens": [/^index [A-Za-z0-9]*..[A-Za-z0-9]* [A-Za-z0-9]*$/gm, /^\@\@ [-+][0-9,.]* [-+][0-9,.]* \@\@/gm, /^([\+]|[\-]){1,3}/gm],
+		"syntaxTokens": [/^index [\w]*..[\w]* [\w]*$/gm, /^\@\@ [-+][0-9,.]* [-+][0-9,.]* \@\@/gm, /^([\+]|[\-]){1,3}/gm],
 		"keywordTokens": ["diff", "index", "@@"],
 		"headers": [/^@@ [-+][0-9,.]* [-+][0-9,.]* @@/gm]
 	},
@@ -87,43 +87,43 @@ var languages = [
 	{
 		"name": "ini",
 		"caseSensitive": true,
-		"syntaxTokens": [/^\[[A-Za-z0-9_\-]*\]$/gm, /^[A-Za-z0-9_\-]*=.*$/],
+		"syntaxTokens": [/^\[[\w_\-]*\]$/gm, /^[\w_\-]*=.*$/],
 		"keywordTokens": []
 	},
 	{
 		"name": "irc",
 		"caseSensitive": false,
-		"syntaxTokens": [/^([\(\[])?([0-9\+\-\:TAPMtapm]){5,50}/gm, /<(.)?[A-Za-z0-9_\\\[\]\{\}\`\^\|]*>/g],
+		"syntaxTokens": [/^([\(\[])?([0-9\+\-\:TAPMtapm]){5,50}/gm, /<(.)?[\w_\\\[\]\{\}\`\^\|]*>/g],
 		"keywordTokens": ["join", "part", "quit", "topic", "nick", "kick", "mode"]
 	},
 	{
 		"name": "java",
 		"caseSensitive": true,
-		"syntaxTokens": [/(import|package)\s*([[a-zA-Z0-9_\.]*);/g, /(public|private|protected|internal)\s(static|abstract)?\s*(final|const)?\s*([[a-zA-Z0-9_]*)\s*([[a-zA-Z0-9_]*)\s*(implements|extends)?\s*([[a-zA-Z0-9_]*)\s*(\(.*)\)\s*{.*}/g],
+		"syntaxTokens": [/(import|package)\s*([[\w_\.]*);/g, /(public|private|protected|internal)\s(static|abstract)?\s*(final|const)?\s*([[\w_]*)\s*([[\w_]*)\s*(implements|extends)?\s*([[\w_]*)\s*(\(.*)\)\s*{.*}/g],
 		"keywordTokens": ["package", "import", "assert", "abstract", "synchronized", "strictfp", "implements", "goto", "native", "instanceof", "interface", "extends"]
 	},
 	{
 		"name": "jinja2",
 		"caseSensitive": true,
-		"syntaxTokens": [/\{%\s*[A-Za-z0-9"._!=><"\-\/\(\) ]*%}/gm, /^%\s*[A-Za-z0-9"._!=><"\-\/\(\) ]*/gm, /<\/?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/g],
+		"syntaxTokens": [/\{%\s*[\w"._!=><"\-\/\(\) ]*%}/gm, /^%\s*[\w"._!=><"\-\/\(\) ]*/gm, /<\/?\w+((\s+\w+(\s*=\s*(?:".*?"|'.*?'|[^'">\s]+))?)+\s*|\s*)\/?>/g],
 		"keywordTokens": ["for", "extends", "block", "endblock", "from", "autoescape", "endfor"]
 	},
 	{
 		"name": "js",
 		"caseSensitive": true,
-		"syntaxTokens": [/function\s*\t*([[a-zA-Z0-9_]*)\((.*)\)/g, /var\s*([[a-zA-Z0-9_]*)\s*\t*=\s*\t*(.*)/g, /if\s*\((.*)\)\s*/g],
+		"syntaxTokens": [/function\s*\t*([[\w_]*)\((.*)\)/g, /var\s*([[\w_]*)\s*\t*=\s*\t*(.*)/g, /if\s*\((.*)\)\s*/g],
 		"keywordTokens": ["undefined", "NaN", "function", "default", "var", "typeof", "debugger", "prototype", "window.", "document.", "navigator.", "parseInt"]
 	},
 	{
 		"name": "json",
 		"caseSensitive": true,
-		"syntaxTokens": [/"[A-Za-z0-9$_\-]*":\s*([\[].*[\]]|"[^"]*"|[0-9.]*|true|false|-[Ee])/g],
+		"syntaxTokens": [/"[\w$_\-]*":\s*([\[].*[\]]|"[^"]*"|[0-9.]*|true|false|-[Ee])/g],
 		"keywordTokens": []
 	},
 	{
 		"name": "less",
 		"caseSensitive": true,
-		"syntaxTokens": [/^@base:\s*.*;/gm, /([\.#])([A-Za-z0-9-_])*\(.*\) when \(.*\)(\s.*)?{/gm, /([\.#]?)([[a-zA-Z0-9_-]*)\(.*\);/gm],
+		"syntaxTokens": [/\$[\w-_]*:.*/gm, /^@base:\s*.*;/gm, /([\.#])([\w-_])*\(.*\) when \(.*\)(\s.*)?{/gm, /([\.#]?)([[\w_-]*)\(.*\);/gm, /^[#!]?([\w]+)\s*([\w]+):/gm],
 		"keywordTokens": ["base", "when", "body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
 	},
 	{
@@ -133,65 +133,78 @@ var languages = [
 		"keywordTokens": ["====", "----", "###"]
 	},
 	{
+		"name": "mirc",
+		"caseSensitive": false,
+		"syntaxTokens": [/on [\*0-9]{1,3}:[\w]*:([\w_\\\[\]\{\}\`\^\|]*:)?.*:[\?\#\*]: {/gi],
+		"keywordTokens": ["on", "alias", "dialog"],
+		"headers": [/on [\*0-9]{1,3}:[\w]*:([\w_\\\[\]\{\}\`\^\|]*:)?.*:[\?\#\*]: {/gi]
+	},
+	{
 		"name": "mssql",
 		"caseSensitive": false,
-		"syntaxTokens": [/SELECT [A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*/gmi, /SELECT TOP\([0-9]\)*[A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*/],
+		"syntaxTokens": [/SELECT [\w\-_, \*]* FROM [\w\-_]*/gmi, /SELECT TOP\([0-9]\)*[\w\-_, \*]* FROM [\w\-_]*/],
 		"keywordTokens": ["select", "from", "where", "order by", "limit", "offset", "create", "table", "database", "index"]
 	},
 	{
 		"name": "mysql",
 		"caseSensitive": false,
-		"syntaxTokens": [/SELECT [A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*/gmi],
+		"syntaxTokens": [/SELECT [\w\-_, \*]* FROM [\w\-_]*/gmi],
 		"keywordTokens": ["select", "from", "where", "order by", "limit", "offset", "create", "table", "database", "index"]
 	},
 	{
 		"name": "objc",
 		"caseSensitive": true,
-		"syntaxTokens": [/@property\s*\(.*\)\s*([[a-zA-Z0-9_]*)\s*(\*)?([[a-zA-Z0-9_]*);/g, /-\s*\(([[a-zA-Z0-9_]*)\)([[a-zA-Z0-9_]*)\:\(([[a-zA-Z0-9_]*)\s(\*)?\)([[a-zA-Z0-9_]*)/g, /\+\s*\(([[a-zA-Z0-9_]*)\)([[a-zA-Z0-9_]*)\:\(([[a-zA-Z0-9_]*)\s(\*)?\)([[a-zA-Z0-9_]*)/g, /if\s*\((.*)\)\s*/g, /#include\s*[\"\<]([[a-zA-Z0-9_\-\.\/]*)[\"\>]/g],
+		"syntaxTokens": [/@property\s*\(.*\)\s*([[\w_]*)\s*(\*)?([[\w_]*);/g, /-\s*\(([[\w_]*)\)([[\w_]*)\:\(([[\w_]*)\s(\*)?\)([[\w_]*)/g, /\+\s*\(([[\w_]*)\)([[\w_]*)\:\(([[\w_]*)\s(\*)?\)([[\w_]*)/g, /if\s*\((.*)\)\s*/g, /#include\s*[\"\<]([[\w_\-\.\/]*)[\"\>]/g],
 		"keywordTokens": ["IBAction", "IBOutlet", "module", "strong", "assign", "@autoreleasepool", "@end", "@try", "@catch", "@class", "@interface", "@implementation", "@protocol", "@public", "@private", "@selector", "@synthesize", "nonatomic", "retain", "YES", "NO", "nil"]
 	},
 	{
 		"name": "perl",
 		"caseSensitive": true,
-		"syntaxTokens": [/(package|use)\s*[A-Za-z0-9_\/]*(\:\:[A-Za-z0-9_\/]*)?.*;/g, /sub\s*[A-Za-z._]*\s*(\(.*\))?\s*{.*}/g, /(my)?\s*\$([A-Za-z0-9]*)\s*=/g, /\$[A-Za-z0-9_]*->[A-Za-z0-9_]*/g],
+		"syntaxTokens": [/(package|use)\s*[\w_\/]*(\:\:[\w_\/]*)?.*;/g, /sub\s*[A-Za-z._]*\s*(\(.*\))?\s*{.*}/g, /(my)?\s*\$([\w]*)\s*=/g, /\$[\w_]*->[\w_]*/g],
 		"keywordTokens": ["use", "our", "sub", "my", "end", "sleep", "printf", "chdir", "exec", "eval", "split", "$self"],
-		"headers": [/#![A-Za-z0-9_\/]*\/perl/g]
+		"headers": [/#![\w_\/]*\/perl/g]
 	},
 	{
 		"name": "php",
 		"caseSensitive": true,
-		"syntaxTokens": [/<\?(php)?\s*(.*)\?>/g, /(include(_once)?|require(_once)?)\s*([[a-zA-Z0-9_\-\.\/'"]*);/g, /if\s*\(.*\)\s*({)?.*(})?/g],
+		"syntaxTokens": [/<\?(php)?\s*(.*)\?>/g, /(include(_once)?|require(_once)?)\s*([[\w_\-\.\/'"]*);/g, /if\s*\(.*\)\s*({)?.*(})?/g],
 		"keywordTokens": ["global", "die", "print", "require_once", "require", "include", "include_once", "instanceof", "unset", "enddeclare", "extends", "foreach", "declare"]
+	},
+	{
+		"name": "properties",
+		"caseSensitive": true,
+		"syntaxTokens": [/^(\s*)[\w._\-]*\s*(=|:).*$/gmi],
+		"keywordTokens": []
 	},
 	{
 		"name": "python",
 		"caseSensitive": true,
-		"syntaxTokens": [/(from\s*([[a-zA-Z0-9_\-\.\/'"]*))?\s*import\s*([[a-zA-Z0-9_\-\.\/'"]*)\s*(as ([[a-zA-Z0-9_]*))/g, /(class|def)\s*([A-Za-z0-9_-]*)\(.*\):/g],
+		"syntaxTokens": [/(from\s*([[\w_\-\.\/'"]*))?\s*import\s*([[\w_\-\.\/'"]*)\s*(as ([[\w_]*))/g, /(class|def)\s*([\w_-]*)\(.*\):/g],
 		"keywordTokens": ["def", "and", "as", "del", "from", "not", "elif", "global", "assert", "pass", "yield", "except", "import", "lambda", "exec"],
-		"headers": [/#![A-Za-z0-9_\/]*\/python/g]
+		"headers": [/#![\w_\/]*\/python/g]
 	},
 	{
 		"name": "ruby",
 		"caseSensitive": true,
-		"syntaxTokens": [/require\s*([[a-zA-Z0-9_\-\.\/'"]*)/g, /class\s*[A-Za-z._]*(\s*<\s*[A-Za-z._]*)?/g, /def\s*[A-Za-z._]*(\([A-Za-z0-9_\-,.]*\))?.*end/g],
+		"syntaxTokens": [/require\s*([[\w_\-\.\/'"]*)/g, /class\s*[A-Za-z._]*(\s*<\s*[A-Za-z._]*)?/g, /def\s*[A-Za-z._]*(\([\w_\-,.]*\))?.*end/g],
 		"keywordTokens": ["def", "end", "begin", "rescue"]
 	},
 	{
 		"name": "scss",
 		"caseSensitive": true,
-		"syntaxTokens": [/\$[A-Za-z0-9-_]*:.*;/g, /@include\s*[A-Za-z0-9_-]*\(.*\);/, /([\.#:&]*?)([[a-zA-Z0-9_-]*)(\[.*\])?\s*\{\s*(.*)\}/g],
+		"syntaxTokens": [/\$[\w-_]*:.*;/g, /@include\s*[\w_-]*\(.*\);/, /([\.#:&]*?)([[\w_-]*)(\[.*\])?\s*\{\s*(.*)\}/g],
 		"keywordTokens": ["@include", "@import", "@extend", "body", "div", "@font-face", "height", "width", ":before", ":after", ":hover", ":active", "font-family", "font-size", "border", "-webkit-", "-moz-", "margin"]
 	},
 	{
 		"name": "sql",
 		"caseSensitive": false,
-		"syntaxTokens": [/SELECT [A-Za-z0-9\-_, \*]* FROM [A-Za-z0-9\-_]*\(.*/gmi],
+		"syntaxTokens": [/SELECT [\w\-_, \*]* FROM [\w\-_]*\(.*/gmi],
 		"keywordTokens": ["select", "from", "where", "order by", "limit", "offset", "create", "table", "database", "index", "row_number"]
 	},
 	{
 		"name": "vb",
 		"caseSensitive": true,
-		"syntaxTokens": [/imports\s*([[a-zA-Z0-9_\.]*);/g, /(Public|Private)?\s*(Class|Sub)\s*([[a-zA-Z0-9_\.]*)\(.*\)(.*)End Sub/g],
+		"syntaxTokens": [/imports\s*([[\w_\.]*);/g, /(Public|Private)?\s*(Class|Sub)\s*([[\w_\.]*)\(.*\)(.*)End Sub/g],
 		"keywordTokens": ["Dim", "Do", "Sub", "End", "ReDim", "For Each"]
 	},
 	{
