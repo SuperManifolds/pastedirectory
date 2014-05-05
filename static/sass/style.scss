@@ -366,6 +366,43 @@ button {
 	display: none;
 }
 
+.balloon {
+	@include border-radius(10px);
+	@include position(absolute, 45px 150px null null);
+	@include transition(opacity .5s ease-out);
+	z-index: 50;
+	position: absolute;
+	padding: 0 10px;
+	width:  auto;
+	color: #fff;
+	background: #7b3131;
+	height: 0;
+    opacity: 0;
+	
+	&.active {
+		@include transition(opacity .5s ease-in);
+		opacity: 1;
+		height: auto;
+	}
+	
+	& p {
+		font-size: 90%;
+		font-weight: 100;
+		line-height: 1.5;
+	}
+	
+	&:after {
+		content: "";
+		position: absolute;
+		top: -30px;
+		right: 50px;
+		border: 15px solid transparent;
+		border-bottom-color: #7b3131;
+		display: block;
+		width: 0;
+	}
+}
+
 .warning {
 	line-height: 0.8;
 	font-size: 90%;

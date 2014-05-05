@@ -55,6 +55,8 @@ myCodeMirror.getWrapperElement().addEventListener("paste", function(e) {
 					currentLanguage = getLanguage;
 					languageSelector.options[languageSelector.selectedIndex].text = "Auto (" + getOptionTextByValue(languageSelector.options, getLanguage) + ")";
 					loadLanguage(getLanguage);
+				} else {
+					document.querySelector(".balloon").classList.add("active");
 				}
 			}
 		}
@@ -109,6 +111,7 @@ function loadLanguage(language) {
 
 
 document.getElementById("languages").addEventListener("change", function(e) {
+	document.querySelector(".balloon").classList.remove("active");
 	currentLanguage = e.target.value;
 	createCookie("language", e.target.value, 3652);
 	loadLanguage(e.target.value);
