@@ -10,7 +10,7 @@
 .cm-s-light.CodeMirror {
 	font-family: 'Menlo', 'Inconsolata', monospace;
 	font-size: 12px;
-	min-height: 99%;
+	min-height: 100%;
 	line-height: 1.5;
     background: #fffefe;
     color: #000;
