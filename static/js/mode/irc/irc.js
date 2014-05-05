@@ -78,7 +78,9 @@ CodeMirror.defineMode('IRC History', function(config) {
       },
 
       token: function(stream, state) {
-
+  		if (stream.match(/(\b(http|https|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/i) || stream.match(/\bwww\.\S+\b/)) { 
+		    return "link"; 
+		} 		  
         state.userIndent(stream.indentation());
 
         if (stream.eatSpace()) {
