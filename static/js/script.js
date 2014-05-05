@@ -8,6 +8,7 @@ if (getTheme === "light") document.getElementById("myonoffswitch").checked = tru
 var estimator = new LanguageEstimator();
 
 var mq = window.matchMedia('(max-width: 675px)');
+
 mq.addListener(matchMediaEvent);
 matchMediaEvent(mq);
 var myCodeMirror;
@@ -59,7 +60,7 @@ myCodeMirror.getWrapperElement().addEventListener("paste", function(e) {
 					languageSelector.options[languageSelector.selectedIndex].text = "Auto (" + getOptionTextByValue(languageSelector.options, getLanguage) + ")";
 					loadLanguage(getLanguage);
 				} else {
-					document.querySelector(".balloon").classList.add("active");
+					document.querySelector(".balloon.language").classList.add("active");
 				}
 			}
 		}
@@ -178,10 +179,20 @@ function onThemeSwitch(e) {
 	createCookie("theme", newTheme, 3652);
 }
 
-
-document.getElementById("submitButton").addEventListener("click", function(e) {
+var submitButton = document.getElementById("submitButton");
+submitButton.addEventListener("click", function(e) {
 	if (myCodeMirror.getValue().length == 0) {
 		alert("The paste can not be empty.");
+		return;
+	}
+	if (!readCookie("terms")) {
+		submitButton.disabled = true;
+		document.querySelector(".balloon.terms").classList.add("active");
+		document.querySelector(".balloon.terms input").addEventListener("change", function() {
+			createCookie("terms", true, 3652);
+			submitButton.disabled = false;
+			document.querySelector(".balloon.terms").classList.remove("active");
+		}, false);
 		return;
 	}
 	var pasteLanguage = (currentLanguage !== "auto" ? currentLanguage : "text");
@@ -211,6 +222,7 @@ document.getElementById("submitButton").addEventListener("click", function(e) {
 	if (encryptionKey) data.append("encrypt", encryptionKey);
 	xhr.send(data);
 }, false);
+
 
 document.getElementById("nav-toggle").addEventListener("click", function(e) {
 	if (e.target.classList.contains("active")) {

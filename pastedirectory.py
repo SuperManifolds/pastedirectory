@@ -176,6 +176,10 @@ def api_post():
 			return json.dumps({ "result": { "id": uniqueid, "url": getServerLink(request) + uniqueid, "key": encryptionKey }})
 	else:
 		abort(405)
+		
+@app.route('/terms')
+def terms():
+	return render_template('terms.html')
 	
 def getServerLink(request):
 	if parser.getboolean('webserver', 'wsgi'):

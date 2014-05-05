@@ -13,6 +13,7 @@ body {
 	font-family: $main-font;
 	margin: 0;
 	height: 100%;
+	overflow: hidden;
 	
 	&.dark {
 		color: $foreground-color-dark;
@@ -379,14 +380,13 @@ button {
 
 .balloon {
 	@include border-radius(10px);
-	@include position(absolute, 45px 165px null null);
 	@include transition(opacity .5s ease-out);
+	pointer-events: none;
 	z-index: 50;
 	position: absolute;
 	padding: 0 10px;
 	width:  auto;
 	color: #fff;
-	background: #7b3131;
 	height: 0;
     opacity: 0;
 	
@@ -402,15 +402,41 @@ button {
 		line-height: 1.5;
 	}
 	
+	& a {
+		pointer-events: all;
+		color: #a9fdff;
+	}
+	
+	& input {
+		pointer-events: all;
+	}
+	
 	&:after {
 		content: "";
 		position: absolute;
 		top: -30px;
 		right: 50px;
 		border: 15px solid transparent;
-		border-bottom-color: #7b3131;
 		display: block;
 		width: 0;
+	}
+	
+	&.language {
+		@include position(absolute, 45px 165px null null);
+		background: #7b3131;
+		
+		&:after {
+			border-bottom-color: #7b3131;
+		}
+	}
+	
+	&.terms {
+		@include position(absolute, 42px -33px null null);
+		background: #317b56;
+		
+		&:after {
+			border-bottom-color: #317b56;
+		}
 	}
 }
 
