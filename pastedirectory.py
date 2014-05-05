@@ -4,7 +4,6 @@ import uuid
 from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect, Blueprint, Response
 from flask.ext.assets import Environment, Bundle
 from flask.ext.scss import Scss
-from flask.ext.mobility import Mobility
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps

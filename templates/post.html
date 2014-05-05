@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block header_right %}
-<a href="https://{{ request.environ['SERVER_NAME'] }}{{request.path}}/raw">
+<a id="rawButton" href="https://{{ request.environ['SERVER_NAME'] }}{{request.path}}/raw">
    <button>View raw</button>
 </a>
 

@@ -70,9 +70,19 @@ header {
 		margin-left: 30px;
 		
 		& h1 {
+			vertical-align: top;
+			display: inline-block;
 			color: #fff;
 			line-height: 60px;
 			margin: 0;
+		}
+		
+		& img {
+			vertical-align: top;
+			margin-top: 5px;
+			display: inline-block;
+			width: 60px;
+			height: 60px;
 		}
 	}
 	
@@ -128,13 +138,8 @@ select {
 	}
 }
 
-option {
-	@include appearance(none);
-	color: blue;
-}
-
-
 .sel {
+	z-index: 100;
 	position:relative;
 	
 	&:after {
@@ -143,7 +148,6 @@ option {
     	content:'<>';
     	font:11px "Consolas", monospace;
     	padding:0 0 2px;
-		ri
     	pointer-events:none;
 		
 		.dark & {
@@ -265,13 +269,13 @@ button {
 	@include position(absolute, 0 59px null null);
 	box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 1);
 	display: none;
-	width: 250px;
-	height: 300px;
-	padding: 10px;
+	max-width: 250px;
+	padding: 15px;
 	font-weight: 200;
 	margin-top: 60px;
 	font-size: 90%;
 	line-height: 1.5;
+	z-index: 100;
 	
 	& h3 {
 		margin: 0;
@@ -283,7 +287,8 @@ button {
 	.light & { background: $interface-background-light; }
 	
 	& input[type="password"] {
-		width: 230px;
+		@include box-sizing(border-box);
+		width: 100%;
 	}
 }
 
@@ -428,4 +433,27 @@ button {
 
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     select {padding-right:18px}
+}
+
+@media screen and (max-width: 900px) {
+	header .left {
+		margin-left: 5px;
+	}
+	
+	header .left h1 {
+		display: none;
+	}
+	
+	header .right {
+		float: none;
+		margin-right: 5px;
+	}
+	
+	#languages {
+		width: 40%;
+	}
+	#more {
+		right: 0;
+		margin-left: 65px;
+	}
 }

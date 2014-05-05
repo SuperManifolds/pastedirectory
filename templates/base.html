@@ -8,20 +8,18 @@
 
 {% block header %}
 <div class="left">
-	<a href="/"><h1>Paste Directory</h1></a>
+	<a href="/">
+		<img src="{{ url_for('static', filename='img/pastedirectory.svg') }}" />
+		<h1>Paste Directory</h1>
+	</a>
 </div>
 <div class="right">
 	{% block header_right %}
-	% if request.mobile != true
 	{% include 'postOptions.html' %}
-	% endif
 	<button class="large" id="submitButton">Submit</button>
 	{% endblock %}
 </div>
 <div id="more">
-	% if request.mobile
-	{% include 'postOptions.html' %}
-	% endif 
 	<h3>Options</h3>
 	<input type="checkbox" name="self_destruct" id="self_destruct" />
 	<label for="self_destruct">Delete 5 minutes after opening</label><br />
