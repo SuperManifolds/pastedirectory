@@ -143,7 +143,7 @@ def api_language_get():
 @app.route('/api/post', methods=['POST', 'GET'])
 def api_post():
 	if request.method == 'POST':
-		if request.form.get('data', None) is None:
+		if request.form.get('data', None) is None or len(request.form.get('data', None)) == 0:
 			return json.dumps(
 				{"error": { "message": "No post data was received", "code": "FIELD_REQUIRED data" } }
 			)

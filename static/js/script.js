@@ -180,6 +180,10 @@ function onThemeSwitch(e) {
 
 
 document.getElementById("submitButton").addEventListener("click", function(e) {
+	if (myCodeMirror.getValue().length == 0) {
+		alert("The paste can not be empty.");
+		return;
+	}
 	var pasteLanguage = (currentLanguage !== "auto" ? currentLanguage : "text");
 	var expireTime = document.getElementById("expires").value;
 	var encryptionKey = document.getElementById("encrypt").value;
