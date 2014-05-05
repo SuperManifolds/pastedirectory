@@ -12,64 +12,16 @@
 </div>
 <div class="right">
 	{% block header_right %}
-	<label class="sel">
-	<select id="expires" name="expires">
-		<option value="0">Never</option>
-		<option value="10">10 minutes</option>
-		<option value="60">1 hour</option>
-		<option value="1440">1 day</option>
-		<option value="43200">1 month</option>
-	</select>
-	</label>
-	<div class="onoffswitch">
-		<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
-		<label class="onoffswitch-label" for="myonoffswitch">
-			<div class="onoffswitch-inner">
-				<div class="onoffswitch-active">
-					<div class="onoffswitch-switch">Light</div>
-				</div>
-				<div class="onoffswitch-inactive">
-					<div class="onoffswitch-switch">Dark</div>
-				</div>
-			</div>
-		</label>
-	</div>
-	<label class="sel">
-	<select id="languages" name="languages">
-		<option value="auto">Automatic</option>
-	<optgroup label="Common Languages">
-	% for language in common_languages
-		% if language.disabled 
-			<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
-		% else
-			% if language.API == mirrorlang.API
-			<option value="{{ language.API }}" selected>{{ language.name }}</option>
-			% else
-			<option value="{{ language.API }}">{{ language.name }}</option>
-			% endif 
-		% endif
-	% endfor 
-	</optgroup>
-	<optgroup label="Other">
-	% for language in languages
-		% if language.disabled
-			<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
-		% else
-			% if language.API == mirrorlang.API
-			<option value="{{ language.API }}" selected>{{ language.name }}</option>
-			% else
-			<option value="{{ language.API }}">{{ language.name }}</option>
-			% endif
-		% endif
-	% endfor
-	</optgroup>
-	</select>
-	</label>
-	<a id="nav-toggle" href="#"><span></span></a>
+	% if request.mobile != true
+	{% include 'postOptions.html' %}
+	% endif
 	<button class="large" id="submitButton">Submit</button>
 	{% endblock %}
 </div>
 <div id="more">
+	% if request.mobile
+	{% include 'postOptions.html' %}
+	% endif 
 	<h3>Options</h3>
 	<input type="checkbox" name="self_destruct" id="self_destruct" />
 	<label for="self_destruct">Delete 5 minutes after opening</label><br />

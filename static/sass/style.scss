@@ -86,7 +86,7 @@ header {
 		}
 		
 		& > button {
-			margin-top: 15px;
+			margin-top: 17px;
 		}
 		& > a > button {
 			margin-top: 20px;
@@ -139,10 +139,11 @@ option {
 	
 	&:after {
 		@include transform(rotate(90deg));
-		@include position(absolute, 4px 8px null null);
+		@include position(absolute, 6px 11px null null);
     	content:'<>';
     	font:11px "Consolas", monospace;
     	padding:0 0 2px;
+		ri
     	pointer-events:none;
 		
 		.dark & {
@@ -159,10 +160,10 @@ option {
 	}
 	
 	&:before {
-		@include position(absolute, 0 8px null null);
+		@include position(absolute, 6px 11px null null);
 		content: '';
 		width: 20px;
-		height: 19px;
+		height: 15px;
 		pointer-events: none;
 		display: block;
 		
@@ -182,7 +183,7 @@ button {
 	cursor: pointer;
 	min-width: 60px;
 	border: none;
-	padding: 3px;
+	padding: 4px;
 	font-family: $main-font;
 	font-weight: 200;
 	font-size: 75%;
@@ -190,7 +191,7 @@ button {
 	
 	&.small {
 		font-size: 75%;
-		padding: 3px;
+		padding: 4px;
 		min-width: 50px;
 	}
 	
@@ -226,7 +227,7 @@ button {
 }
 
 #nav-toggle span {
-	margin-top: 12px;
+	margin-top: 13px;
 }
 
 #nav-toggle span, 
@@ -290,7 +291,7 @@ button {
 	@include user-select(none);
 	position: relative;
 	width: 63px;
-	margin-top: 20px;
+	margin-top: 19.5px;
 }
 
 .onoffswitch-checkbox {
@@ -313,9 +314,9 @@ button {
 		float: left;
 		position: relative;
 		width: 50%;
-		height: 23px;
+		height: 24px;
 		padding: 0;
-		line-height: 23px;
+		line-height: 24px;
     	font-size: 100%;
 		color: white;
 	}
@@ -373,7 +374,7 @@ button {
 
 .balloon {
 	@include border-radius(10px);
-	@include position(absolute, 45px 150px null null);
+	@include position(absolute, 45px 165px null null);
 	@include transition(opacity .5s ease-out);
 	z-index: 50;
 	position: absolute;
