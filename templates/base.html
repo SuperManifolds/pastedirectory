@@ -38,6 +38,8 @@
 	</div>
 	<label class="sel">
 	<select id="languages" name="languages">
+		<option value="auto">Automatic</option>
+	<optgroup label="Common Languages">
 	% for language in common_languages
 		% if language.disabled 
 			<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
@@ -49,7 +51,8 @@
 			% endif 
 		% endif
 	% endfor 
-	<option disabled>-------------------</option> 
+	</optgroup>
+	<optgroup label="Other">
 	% for language in languages
 		% if language.disabled
 			<option value="{{ language.API }}" disabled>{{ language.name }}</option> 
@@ -61,6 +64,7 @@
 			% endif
 		% endif
 	% endfor
+	</optgroup>
 	</select>
 	</label>
 	<a id="nav-toggle" href="#"><span></span></a>

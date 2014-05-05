@@ -128,6 +128,11 @@ select {
 	}
 }
 
+option {
+	@include appearance(none);
+	color: blue;
+}
+
 
 .sel {
 	position:relative;
