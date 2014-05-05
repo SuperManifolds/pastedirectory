@@ -2,9 +2,7 @@
 
 {% block head %}
 {{ super() }}
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/codemirror.css') }}" />
 <link rel="stylesheet" type="text/css" href="static/css/theme/{{theme}}.css" data-rel="theme" />
-<link href='https://fonts.googleapis.com/css?family=Inconsolata:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 <meta name="syntax-language" data="{{ mirrorlang.API }}" >
 {% endblock %}
 
@@ -85,6 +83,7 @@
 {% endblock %}
 
 {% block scripts %}
+{{ super() }}
 % assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js", "js/click-links.js", "js/LanguageEstimator.js"
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 % endassets
