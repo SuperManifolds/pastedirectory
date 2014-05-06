@@ -55,7 +55,7 @@ db = client.pastedirectory
 
 def static_url_for(filename):
 	if parser.has_option('webserver', 'static_url'):
-		return parser.get('webserver', 'static_url')
+		return parser.get('webserver', 'static_url') + "/" + filename
 	else:
 		return url_for('static', filename=filename)
 	
