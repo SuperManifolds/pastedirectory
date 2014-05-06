@@ -101,6 +101,7 @@ header {
 		}
 		& > a > button {
 			margin-top: 20px;
+			margin-right: 10%;
 		}
 	}
 	
@@ -221,6 +222,10 @@ button {
 		cursor: default;
 		background-color: #7c8ea8;
 	}
+}
+
+#rawButton {
+	margin-right: 30px;
 }
 
 #nav-toggle {
@@ -471,8 +476,6 @@ button {
 	}
 	
 	header .right {
-		float: none;
-		margin-right: 5px;
 	}
 	
 	#languages {
