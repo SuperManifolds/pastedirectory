@@ -43,7 +43,7 @@
 
 {% block scripts %}
 {{ super() }}
-% assets filters="closure_js", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js", "js/click-links.js", "js/LanguageEstimator.js"
+% assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js", "js/click-links.js", "js/LanguageEstimator.js"
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 % endassets
 <script type="text/javascript" src="{{ static_url_for('js/script.js') }}" async="async"></script>
