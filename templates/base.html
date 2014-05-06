@@ -29,7 +29,21 @@
 	<label for="self_destruct">{{ _('Erase 5 minutes after opening') }}</label><br />
 	<label for="encrypt">{{ _('Encryption') }}</label><br/>
 	<input type="password" name="encrypt" id="encrypt" />
-	<span class="warning">{{ _('The data cannot be recovered if you lose your password.') }}</span>
+	<span class="warning">{{ _('The data cannot be recovered if you lose your password.') }}</span><br /><br/>
+	<label for="onoffswitch">Change Theme: </label>
+	<div class="onoffswitch">
+	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
+	<label class="onoffswitch-label" for="myonoffswitch">
+		<div class="onoffswitch-inner">
+			<div class="onoffswitch-active">
+				<div class="onoffswitch-switch">{{ _('Light') }}</div>
+			</div>
+			<div class="onoffswitch-inactive">
+				<div class="onoffswitch-switch">{{ _('Dark') }}</div>
+			</div>
+		</div>
+	</label>
+</div>
 </div>
 <blockquote class="balloon language">
 	<p>{{ _('The syntax of your paste does not match a recognized language, please manually specify a language.') }}</p>

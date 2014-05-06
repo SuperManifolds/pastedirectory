@@ -297,7 +297,7 @@ button {
 	@include user-select(none);
 	position: relative;
 	width: 63px;
-	margin-top: 19.5px;
+	float: right;
 }
 
 .onoffswitch-checkbox {

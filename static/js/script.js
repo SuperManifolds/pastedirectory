@@ -5,6 +5,7 @@ var currentLanguage = '';
 var getTheme = readCookie("theme");
 if (!getTheme) getTheme = "dark";
 if (getTheme === "light") document.getElementById("myonoffswitch").checked = true;
+document.getElementById("myonoffswitch").addEventListener("click", onThemeSwitch, false);
 var estimator = new LanguageEstimator();
 
 var mq = window.matchMedia('(max-width: 675px)');
@@ -69,14 +70,11 @@ myCodeMirror.getWrapperElement().addEventListener("paste", function(e) {
 
 function matchMediaEvent(e) {
 	var expireContainer = document.getElementById("expireContainer");
-	var themeSwitch = document.querySelector(".onoffswitch");
 	var rawButton = document.getElementById("rawButton");
 	if (e.matches) {
 		var moreContainer = document.getElementById("more");
 		var expireHtml = expireContainer.cloneNode(true);
-		var themeHtml = themeSwitch.cloneNode(true);
 		expireContainer.parentNode.removeChild(expireContainer);
-		themeSwitch.parentNode.removeChild(themeSwitch);
 		moreContainer.appendChild(expireHtml);
 		moreContainer.appendChild(themeHtml);
 		if (rawButton) {
@@ -85,14 +83,10 @@ function matchMediaEvent(e) {
 			moreContainer.appendChild(rawHtml);
 		}
 		expireHtml.firstChild.addEventListener("change", onExpireChange, false);
-		themeHtml.addEventListener("click", onThemeSwitch, false);
 	} else {
 		var headerContainer = document.querySelector("header .right");
 		var expireHtml = expireContainer.cloneNode(true);
-		var themeHtml = themeSwitch.cloneNode(true);
 		expireContainer.parentNode.removeChild(expireContainer);
-		themeSwitch.parentNode.removeChild(themeSwitch);
-		headerContainer.insertBefore(themeHtml,headerContainer.firstChild);
 		headerContainer.insertBefore(expireContainer,headerContainer.firstChild);
 		if (rawButton) {
 			var rawHtml = rawButton.cloneNode(true);
@@ -100,7 +94,6 @@ function matchMediaEvent(e) {
 			headerContainer.insertBefore(rawHtml, headerContainer.firstChild);
 		}
 		expireHtml.firstChild.addEventListener("change", onExpireChange, false);
-		themeHtml.addEventListener("click", onThemeSwitch, false);
 	
 	}
 }
