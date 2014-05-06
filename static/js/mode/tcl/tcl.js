@@ -50,8 +50,9 @@ CodeMirror.defineMode("tcl", function() {
         stream.eatWhile(/[\w\.]/);
         return "number";
       }
-      else if (ch == "#" && stream.eat("*")) {
-        return chain(stream, state, tokenComment);
+      else if (ch == "#") {
+		stream.eatWhile(/[^\n\/]/);
+		return "comment";
       }
       else if (ch == "#" && stream.match(/ *\[ *\[/)) {
         return chain(stream, state, tokenUnparsed);
