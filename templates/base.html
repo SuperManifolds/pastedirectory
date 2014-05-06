@@ -2,7 +2,11 @@
 
 {% block head %}
 {{ super() }}
-<link rel="stylesheet" type="text/css" href="static/css/theme/{{theme}}.css" data-rel="theme" />
+% if theme == 'dark'
+<link rel="stylesheet" type="text/css" href="{{ static_url_for('css/theme/dark.css') }}" data-rel="theme" />
+% else
+<link rel="stylesheet" type="text/css" href="{{ static_url_for('css/theme/light.css') }}" data-rel="theme" />
+% endif
 <meta name="syntax-language" data="{{ mirrorlang.API }}" >
 {% endblock %}
 

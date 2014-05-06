@@ -31,7 +31,7 @@ assets = Environment(app)
 app.register_blueprint(error_controller)
 app.register_blueprint(admin_controller)
 
-if parser.get('webserver', 'static_url'):
+if parser.has_option('webserver', 'static_url'):
 	app.static_url_path = "//"+parser.get('webserver', 'static_url')
 	assets.url = parser.get('webserver', 'static_url')
 
@@ -54,7 +54,7 @@ client = MongoClient()
 db = client.pastedirectory
 
 def static_url_for(filename):
-	if parser.get('webserver', 'static_url'):
+	if parser.has_option('webserver', 'static_url'):
 		return parser.get('webserver', 'static_url')
 	else:
 		return url_for('static', filename=filename)
