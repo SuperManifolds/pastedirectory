@@ -85,8 +85,10 @@
 		<div class="bkgrtext">408</div>
         <div id="container">
             <section>
-                <h1><strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> timed out waiting for the request.</h1>
-				<p>The client did not make a request in the time the server was prepeared to wait.</p>
+				{% autoescape false %}
+				<h1>{{ _('%(requesturl)s timed out while waiting for the request.', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+				<p>{{ _('The client did not make a request in the time the server was prepeared to wait.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

@@ -1,10 +1,10 @@
 <label class="sel" id="expireContainer">
 	<select id="expires" name="expires">
-		<option value="0">Never</option>
-		<option value="10">10 minutes</option>
-		<option value="60">1 hour</option>
-		<option value="1440">1 day</option>
-		<option value="43200">1 month</option>
+		<option value="0">{{ _('Never') }}</option>
+		<option value="10">{{ _('10 minutes') }}</option>
+		<option value="60">{{ _('1 hour') }}</option>
+		<option value="1440">{{ _('1 day') }}</option>
+		<option value="43200">{{ _('1 month') }}</option>
 	</select>
 </label>
 <div class="onoffswitch">
@@ -12,17 +12,17 @@
 	<label class="onoffswitch-label" for="myonoffswitch">
 		<div class="onoffswitch-inner">
 			<div class="onoffswitch-active">
-				<div class="onoffswitch-switch">Light</div>
+				<div class="onoffswitch-switch">{{ _('Light') }}</div>
 			</div>
 			<div class="onoffswitch-inactive">
-				<div class="onoffswitch-switch">Dark</div>
+				<div class="onoffswitch-switch">{{ _('Dark') }}</div>
 			</div>
 		</div>
 	</label>
 </div>
 <label class="sel">
 <select id="languages" name="languages">
-	<option value="auto">Automatic</option>
+	<option value="auto">{{ _('Automatic') }}</option>
 	<optgroup label="Common Languages">
 		% for language in common_languages
 		% if language.disabled 

@@ -85,7 +85,9 @@
 		<div class="bkgrtext">411</div>
         <div id="container">
             <section>
-                <h1>The page <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> needs to know the length of the request content.</h1>
+				{% autoescape false %}
+				<h1>{{ _('The page %(requesturl)s needs to know the length of the request content.', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

@@ -85,8 +85,10 @@
 		<div class="bkgrtext">451</div>
         <div id="container">
             <section>
-                <h1>Access to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is denied due to legal reasons.</h1>
-                <p>It may have been taken down due to a copyright violation or law enforcement request.</p>
+				{% autoescape false %}
+				<h1>{{ _('Access to %(requesturl)s has been denied due to legal reasons.', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+                <p>{{ _('It may have been taken down due to a copyright violation or law enforcement request.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

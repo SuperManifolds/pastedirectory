@@ -85,8 +85,10 @@
 		<div class="bkgrtext">413</div>
         <div id="container">
             <section>
-                <h1>The request you made to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is too large.</h1>
-				<p>Our server is unable to process your request because the stuff you sent us is too big.</p>
+				{% autoescape false %}
+				<h1>{{ _('The requests you made to %(requesturl)s is too large', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+				<p>{{ _('Our server is unable to process your request because the stuff you sent us is too big.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

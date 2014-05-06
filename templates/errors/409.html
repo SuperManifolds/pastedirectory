@@ -85,8 +85,11 @@
 		<div class="bkgrtext">409</div>
         <div id="container">
             <section>
+				{% autoescape false %}
+				<h1>{{ _('The request to %(requesturl)s could not be processed because of a conflict..', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
                 <h1>The request to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> could not be processed because of a conflict.</h1>
-				<p>Try again later.</p>
+				<p>{{ _('Try again later.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

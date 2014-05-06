@@ -85,8 +85,10 @@
 		<div class="bkgrtext">418</div>
         <div id="container">
             <section>
-                <h1><strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is a teapot.</h1>
-                <p>It may be short or stout.</p>
+				{% autoescape false %}
+				<h1>{{ _('%(requesturl)s is a teapot.', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+                <p>{{ _('It may be short or stout.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

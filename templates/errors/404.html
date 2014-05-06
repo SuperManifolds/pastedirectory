@@ -85,8 +85,10 @@
 		<div class="bkgrtext">404</div>
         <div id="container">
             <section>
-                <h1><strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> could not be found</h1>
-                <p>If you have been linked to this, the link may have been mispelled or has expired.</p>
+				{% autoescape false %}
+				<h1>{{ _('%(requesturl)s could not be found', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+                <p>{{ _('If you have been linked to this, the link may have been mispelled or has expired.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

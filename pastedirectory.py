@@ -4,6 +4,7 @@ import uuid
 from flask import Flask, render_template, request, session, url_for, escape, make_response, abort, redirect, Blueprint, Response
 from flask.ext.assets import Environment, Bundle
 from flask.ext.scss import Scss
+from flask.ext.babel import Babel, gettext
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from bson.json_util import dumps
@@ -21,6 +22,7 @@ import os
 from modules.errors import error_controller
 from modules.admin import admin_controller
 from modules.security import AESEncryption
+from modules.localisation import languages
 
 os.path.dirname(os.path.abspath(__file__))
 parser = SafeConfigParser()
@@ -28,6 +30,7 @@ parser.read('config.ini')
 app = Flask(__name__)
 app.jinja_env.line_statement_prefix = '%'
 assets = Environment(app)
+babel = Babel(app)
 app.register_blueprint(error_controller)
 app.register_blueprint(admin_controller)
 
@@ -60,6 +63,11 @@ def static_url_for(filename):
 		return url_for('static', filename=filename)
 	
 app.jinja_env.globals.update(static_url_for=static_url_for)
+
+
+@babel.localeselector
+def get_locale():
+	return request.accept_languages.best_match(languages.keys())
 
 @app.route('/')
 def index():

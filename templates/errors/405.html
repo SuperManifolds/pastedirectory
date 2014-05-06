@@ -85,7 +85,9 @@
 		<div class="bkgrtext">405</div>
         <div id="container">
             <section>
-                <h1><strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> does not support this type of request</h1>
+				{% autoescape false %}
+				<h1>{{ _('%(requesturl)s does not support this type of request', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

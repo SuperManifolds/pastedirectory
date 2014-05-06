@@ -85,8 +85,10 @@
 		<div class="bkgrtext">410</div>
         <div id="container">
             <section>
-                <h1>The page <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is gone.</h1>
-				<p>It may have expired or been deleted.</p>
+				{% autoescape false %}
+				<h1>{{ _('The page %(requesturl)s is gone.', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+				<p>{{ _('It may have expired or been deleted.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

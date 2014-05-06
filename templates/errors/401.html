@@ -85,8 +85,10 @@
 		<div class="bkgrtext">401</div>
         <div id="container">
             <section>
-                <h1>Access to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> was unauthorised</h1>
-                <p>You need to enter the username and password to enter this area</p>
+				{% autoescape false %}
+				<h1>{{ _('Access to %(requesturl)s was unauthorised', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+                <p>{{ _('You need to enter the username and password to enter this area') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

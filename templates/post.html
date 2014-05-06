@@ -7,7 +7,7 @@
 
 {% block header_right %}
 <a id="rawButton" href="https://{{ request.environ['SERVER_NAME'] }}{{request.path}}/raw">
-   <button>View raw</button>
+   <button>{{ _('View raw') }}</button>
 </a>
 
 {{ super() }}
@@ -15,7 +15,7 @@
  
 {% block content %}
 % if post.self_destruct and post.author != requestaddress 
-<div class="notice">This paste has been set to be deleted 5 minutes after it is opened. </div>
+<div class="notice">{{ _('This paste has been set to be deleted 5 minutes after it is opened.') }}</div>
 % endif
 <textarea id="loadview">{{ post.data }}</textarea>
 {% endblock %}

@@ -20,24 +20,25 @@
 <div class="right">
 	{% block header_right %}
 	{% include 'postOptions.html' %}
-	<button class="large" id="submitButton">Submit</button>
+	<button class="large" id="submitButton">{{ _('Submit') }}</button>
 	{% endblock %}
 </div>
 <div id="more">
-	<h3>Options</h3>
+	<h3>{{ _('Options') }}</h3>
 	<input type="checkbox" name="self_destruct" id="self_destruct" />
-	<label for="self_destruct">Delete 5 minutes after opening</label><br />
-	<label for="encrypt">Encryption</label><br/>
+	<label for="self_destruct">{{ _('Delete 5 minutes after opening') }}</label><br />
+	<label for="encrypt">{{ _('Encryption') }}</label><br/>
 	<input type="password" name="encrypt" id="encrypt" />
-	<span class="warning">The data cannot be recovered if you lose your password.</span>
+	<span class="warning">{{ _('The data cannot be recovered if you lose your password.') }}</span>
 </div>
 <blockquote class="balloon language">
-	<p>I could not find out what this is. You will have to tell me yourself.</p>
+	<p>{{ _('I could not find out what this is. You will have to tell me yourself.') }}</p>
 </blockquote>
 <blockquote class="balloon terms">
+	{{ _('To use our service you need to agree to our') }}
 	<p>To use our service you need to agree to our <br />
-	<a href="/terms" target="_blank">Terms and Conditions</a>
-	<label><input type="checkbox" name="terms" />I agree</label></p>
+	<a href="/terms" target="_blank">{{ _('Terms and Conditions') }}</a>
+	<label><input type="checkbox" name="terms" />{{ _('I agree') }}</label></p>
 </blockquote>
 {% endblock %}
 

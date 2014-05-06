@@ -85,8 +85,10 @@
 		<div class="bkgrtext">403</div>
         <div id="container">
             <section>
-                <h1>Access to <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> is forbidden</h1>
-                <p>The request was a valid request, but the server is refusing to respond to it.</p>
+				{% autoescape false %}
+				<h1>{{ _('Access to %(requesturl)s is forbidden', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+                <p>{{ _('The request was a valid request, but the server is refusing to respond to it.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

@@ -85,8 +85,10 @@
 		<div class="bkgrtext">412</div>
         <div id="container">
             <section>
-                <h1>The page <strong>{{ request.environ['SERVER_NAME'] }}{{request.path}}</strong> cannot satisfy the expectations of your client.</h1>
-				<p>One of the preconditions on the request could not be met.</p>
+				{% autoescape false %}
+				<h1>{{ _('The page %(requesturl)s cannot satisfy the expectation of your client.', requesturl = '<strong>%s</strong>' % (request.environ['SERVER_NAME'] + request.path)) }}</h1>
+				{% endautoescape %}
+				<p>{{ _('One of the preconditions on the request could not be met.') }}</p>
             </section>
             <footer>
                 <p><a href="https://paste.directory/">paste.directory</a></p>

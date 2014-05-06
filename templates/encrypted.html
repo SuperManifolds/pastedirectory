@@ -64,19 +64,19 @@
 		<main>
 			{% if decryptFailed %}
 				{% if locked %}
-				<h2>Too many incorrect password attempts</h2>
+				<h2>{{ _('Too many incorrect passwords attempts') }}</h2>
 				<p>You have entered the incorrect password too many times, you must wait an hour to try again.</p>
 				{% else %}
-				<h2>Incorrect password</h2>
-				<p>Please enter the correct password to decrypt this paste.</p>
+				<h2>{{ _('Incorrect password') }}</h2>
+				<p>{{ _('Please enter the correct password to decrypt this paste.') }}</p>
 				<form name="decrypt" method="get" action="/{{ uploadid }}">
 					<input type="password" name="key" />
 					<input type="submit" />
 				</form>
 				{% endif %}
 			{% else %}
-			<h2>This paste is encrypted</h2>
-			<p>You will need to enter the password to read it</p>
+			<h2>{{ _('This paste is encrypted') }}</h2>
+			<p>{{ _('You will need to enter the password to read it') }}</p>
 			<form name="decrypt" method="get" action="/{{ uploadid }}">
 				<input type="password" name="key" />
 				<input type="submit" />
