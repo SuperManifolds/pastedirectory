@@ -3,6 +3,9 @@
     <head>
 		{% block head %}
 		<meta name=viewport content="width=device-width, initial-scale=1">
+		% assets filters="cssmin", output="gen/style.css", "css/style.css", "css/codemirror.css", "css/googlefonts-inconsolata.css", "css/googlefonts-roboto.css"
+		<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+		% endassets
 		{% endblock %}
 	</head>
 	<body class="{{theme}}">
@@ -20,9 +23,6 @@
 			</footer>
 		</div>
 		{% block scripts %}
-		% assets filters="cssmin", output="gen/style.css", "css/style.css", "css/codemirror.css", "css/googlefonts-inconsolata.css", "css/googlefonts-roboto.css"
-		<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
-		% endassets
 		{% endblock %}
 	</body>
 </html>

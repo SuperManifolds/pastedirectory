@@ -31,6 +31,9 @@ assets = Environment(app)
 app.register_blueprint(error_controller)
 app.register_blueprint(admin_controller)
 
+if parser.get('webserver', 'static_url'):
+	assets.url = parser.get('webserver', 'static_url')
+
 if parser.getboolean('webserver', 'force_https'):
 	try:
 		from flask_sslify import SSLify
