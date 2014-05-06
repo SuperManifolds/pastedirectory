@@ -29,7 +29,7 @@
 	<label for="self_destruct">Delete 5 minutes after opening</label><br />
 	<label for="encrypt">Encryption</label><br/>
 	<input type="password" name="encrypt" id="encrypt" />
-	<span class="warning">We can not recover your data if you lose your password.</span>
+	<span class="warning">The data cannot be recovered if you lose your password.</span>
 </div>
 <blockquote class="balloon language">
 	<p>I could not find out what this is. You will have to tell me yourself.</p>
@@ -43,7 +43,7 @@
 
 {% block scripts %}
 {{ super() }}
-% assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js", "js/click-links.js", "js/LanguageEstimator.js"
+% assets filters="closure_js", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js", "js/click-links.js", "js/LanguageEstimator.js"
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 % endassets
 <script type="text/javascript" src="{{ static_url_for('js/script.js') }}" async="async"></script>
