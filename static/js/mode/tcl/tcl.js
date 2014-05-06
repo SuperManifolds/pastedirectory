@@ -54,17 +54,6 @@ CodeMirror.defineMode("tcl", function() {
 		stream.eatWhile(/[^\n\/]/);
 		return "comment";
       }
-      else if (ch == "#" && stream.match(/ *\[ *\[/)) {
-        return chain(stream, state, tokenUnparsed);
-      }
-      else if (ch == "#" && stream.eat("#")) {
-        stream.skipToEnd();
-        return "comment";
-      }
-      else if (ch == '"') {
-        stream.skipTo(/"/);
-        return "comment";
-      }
       else if (ch == "$") {
         stream.eatWhile(/[$_a-z0-9A-Z\.{:]/);
         stream.eatWhile(/}/);
