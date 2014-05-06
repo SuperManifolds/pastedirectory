@@ -32,17 +32,13 @@ app.register_blueprint(error_controller)
 app.register_blueprint(admin_controller)
 
 if parser.get('webserver', 'static_url'):
-	from flask.ext.cdn import CDN
-	app.config['CDN_DOMAIN'] = parser.get('webserver', 'static_url')
-	
+	app.static_url_path = "//"+parser.get('webserver', 'static_url')
 	assets.url = parser.get('webserver', 'static_url')
 
 if parser.getboolean('webserver', 'force_https'):
 	try:
 		from flask_sslify import SSLify
 		sslify = SSLify(app, permanent=True)
-		if parser.get('webserver', 'static_url'):
-			app.config['CDN_HTTPS'] = True
 	except ImportError:
 		pass
 	
@@ -56,6 +52,14 @@ APPLICATION_NAME = parser.get('application', 'name')
 
 client = MongoClient()
 db = client.pastedirectory
+
+def static_url_for(filename):
+	if parser.get('webserver', 'static_url'):
+		return parser.get('webserver', 'static_url')
+	else:
+		return url_for('static', filename=filename)
+	
+app.jinja_env.globals.update(static_url_for=static_url_for)
 
 @app.route('/')
 def index():

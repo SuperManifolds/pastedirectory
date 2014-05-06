@@ -9,7 +9,7 @@
 {% block header %}
 <div class="left">
 	<a href="/">
-		<img src="{{ url_for('static', filename='img/pastedirectory.svg') }}" />
+		<img src="{{ static_url_for('img/pastedirectory.svg') }}" />
 		<h1>Paste Directory</h1>
 	</a>
 </div>
@@ -42,5 +42,5 @@
 % assets filters="jsmin", output="gen/cm.js", "js/codemirror.js", "js/matchbrackets.js", "js/active-line.js", "js/click-links.js", "js/LanguageEstimator.js"
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 % endassets
-<script type="text/javascript" src="{{ url_for('static', filename='js/script.js') }}" async="async"></script>
+<script type="text/javascript" src="{{ static_url_for('js/script.js') }}" async="async"></script>
 {% endblock %}
