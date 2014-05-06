@@ -32,12 +32,17 @@ app.register_blueprint(error_controller)
 app.register_blueprint(admin_controller)
 
 if parser.get('webserver', 'static_url'):
+	from flask.ext.cdn import CDN
+	app.config['CDN_DOMAIN'] = parser.get('webserver', 'static_url')
+	
 	assets.url = parser.get('webserver', 'static_url')
 
 if parser.getboolean('webserver', 'force_https'):
 	try:
 		from flask_sslify import SSLify
 		sslify = SSLify(app, permanent=True)
+		if parser.get('webserver', 'static_url'):
+			app.config['CDN_HTTPS'] = True
 	except ImportError:
 		pass
 	
