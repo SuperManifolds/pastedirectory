@@ -24,6 +24,7 @@ if (loadview) {
 		styleActiveLine: true,
 		matchBrackets: true,
 		autofocus: true,
+		viewportMargin: 5000,
 		makeLinksClickable: true
 	});
 	if (window.location.hash) {
@@ -35,6 +36,7 @@ if (loadview) {
 		lineWrapping: true,
 		styleActiveLine: true,
 		matchBrackets: true,
+		viewportMargin: 5000,
 		lineNumbers: true,
 		autofocus: true,
 		makeLinksClickable: true
@@ -94,7 +96,7 @@ function matchMediaEvent(e) {
 			headerContainer.insertBefore(rawHtml, headerContainer.firstChild);
 		}
 		expireHtml.firstChild.addEventListener("change", onExpireChange, false);
-	
+
 	}
 }
 
@@ -113,7 +115,7 @@ function loadLanguage(language) {
 	xhr.onreadystatechange = function () {
 		if (xhr.readyState === 4) {
 			var response = JSON.parse(xhr.responseText);
-			
+
 			if (response[0].experimental) {
 				if (!confirm("Support for this language is still experimental and may not behave as expected. Use at your own risk.")) {
 					languageSelector.value = "text";
