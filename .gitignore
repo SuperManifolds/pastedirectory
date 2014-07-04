@@ -4,3 +4,6 @@ config.ini
 *.pyc
 languages.json
 static/css/style.css
+static/css/bourbon/*
+static/.webassets-cache/*
+static/gen/*
