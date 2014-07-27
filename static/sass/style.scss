@@ -14,18 +14,41 @@ body {
 	margin: 0;
 	height: 100%;
 	overflow: hidden;
-	
+
 	&.dark {
 		color: $foreground-color-dark;
-		background: $page-background-dark; 
+		background: $page-background-dark;
 	}
-	
+
 	&.light {
 		color: $foreground-color-light;
-		background: $page-background-light; 
+		background: $page-background-light;
 	}
 }
 
+.CodeMirror {
+	height: 100vh !important;
+}
+
+.CodeMirror-scroll {
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.CodeMirror-gutter {
+	height: 100%;
+}
+
+core-header-panel {
+  height: 100vh;
+  width: 100vw;
+  background-color: white;
+  color: #FFF;
+  transition: height 0.2s;
+}
+core-toolbar {
+	background: #45345b;
+}
 
 h1, h2, h3 {
 	font-weight: 100;
@@ -35,26 +58,17 @@ h1, h2, h3 {
 	min-height: 100%;
 }
 
-main {
-	@include box-sizing(border-box);
-	width: 100%;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	padding-top: 60px;
-}
-
 a {
 	text-decoration: none;
 	.dark & { color: #739ed9; }
 	.light & { color: #3b6195; }
-	
+
 	&:hover {
 		text-decoration: underline;
 		.dark & { color: #a7c5ef; }
 		.light & { color: #5685c6; }
 	}
-		
+
 	&:active {
 		.dark & { color: #4971a8; }
 		.light & { color: #163053; }
@@ -65,11 +79,11 @@ header {
 	height: 60px;
 	position: relative;
 	z-index: 1;
-	
+
 	.left {
 		float: left;
 		margin-left: 30px;
-		
+
 		& h1 {
 			vertical-align: top;
 			display: inline-block;
@@ -77,7 +91,7 @@ header {
 			line-height: 60px;
 			margin: 0;
 		}
-		
+
 		& img {
 			vertical-align: top;
 			margin-top: 5px;
@@ -86,16 +100,16 @@ header {
 			height: 60px;
 		}
 	}
-	
+
 	.right {
 		float: right;
 		margin-right: 30px;
-		
+
 		& > div,button,a {
 			display: inline-block;
 			vertical-align: top;
 		}
-		
+
 		& > button {
 			margin-top: 17px;
 		}
@@ -104,11 +118,11 @@ header {
 			margin-right: 10%;
 		}
 	}
-	
+
 	body.dark & {
 		background: $interface-background-dark;
 	}
-	
+
 	body.light & {
 		background: $interface-background-light;
 	}
@@ -126,13 +140,13 @@ select {
 	border-radius: 0;
 	text-overflow: '';
 	text-indent: 1px;
-	
+
 	.dark & {
 		background: $control-background-dark;
 		color: $foreground-color-dark;
 		border: 1px solid $control-background-dark;
 	}
-	
+
 	.light & {
 		background: $control-background-light;
 		color: $foreground-color-light;
@@ -143,7 +157,7 @@ select {
 .sel {
 	z-index: 100;
 	position:relative;
-	
+
 	&:after {
 		@include transform(rotate(90deg));
 		@include position(absolute, 6px 11px null null);
@@ -151,20 +165,20 @@ select {
     	font:11px "Consolas", monospace;
     	padding:0 0 2px;
     	pointer-events:none;
-		
+
 		.dark & {
 			background: $control-background-dark;
 			color: $foreground-color-dark;
 			border-bottom: 1px solid $control-background-dark;
 		}
-		
+
 		.light & {
 			background: $control-background-light;
 			color: $foreground-color-light;
 			border-bottom: 1px solid $control-background-light;
 		}
 	}
-	
+
 	&:before {
 		@include position(absolute, 6px 11px null null);
 		content: '';
@@ -172,11 +186,11 @@ select {
 		height: 15px;
 		pointer-events: none;
 		display: block;
-		
+
 		.dark & {
 			background: $control-background-dark;
 		}
-		
+
 		.light & {
 			background: $control-background-light;
 		}
@@ -194,30 +208,30 @@ button {
 	font-weight: 200;
 	font-size: 75%;
 	background: #34537e;
-	
+
 	&.small {
 		font-size: 75%;
 		padding: 4px;
 		min-width: 50px;
 	}
-	
+
 	&.large {
 		font-size: 100%;
 		padding: 4px;
 		min-width: 80px;
 	}
-	
+
 	.dark & { color: $foreground-color-dark; }
 	.light & { color: $foreground-color-light; }
-	
+
 	&:hover {
 		background: #42699d;
 	}
-	
+
 	&:active {
 		background: #1d3658;
 	}
-	
+
 	&:disabled {
 		cursor: default;
 		background-color: #7c8ea8;
@@ -240,7 +254,7 @@ button {
 	margin-top: 13px;
 }
 
-#nav-toggle span, 
+#nav-toggle span,
 #nav-toggle span:before,
 #nav-toggle span:after {
 	border-radius: 1px;
@@ -268,7 +282,7 @@ button {
   top: -6px;
 }
 #nav-toggle span:after {
-  bottom: -6px; 
+  bottom: -6px;
 }
 
 #more {
@@ -282,16 +296,16 @@ button {
 	font-size: 90%;
 	line-height: 1.5;
 	z-index: 100;
-	
+
 	& h3 {
 		margin: 0;
 		font-size: 140%;
 		text-align: center;
 	}
-	
+
 	.dark & { background: $interface-background-dark; }
 	.light & { background: $interface-background-light; }
-	
+
 	& input[type="password"] {
 		@include box-sizing(border-box);
 		width: 100%;
@@ -319,7 +333,7 @@ button {
 	@include transition(margin 0.3s ease-in 0s);
     width: 200%;
 	margin-left: -100%;
-	
+
 	& > div {
 		@include box-sizing(border-box);
 		float: left;
@@ -331,13 +345,13 @@ button {
     	font-size: 100%;
 		color: white;
 	}
-	
+
 	& .onoffswitch-active {
 		padding-left: 15px;
     	background-color: #d0dcde;
 		color: #FFFFFF;
 	}
-	
+
 	& .onoffswitch-inactive {
     	padding-right: 15px;
     	background-color: #314D67; color: #FFFFFF;
@@ -349,7 +363,7 @@ button {
 	@include position(absolute, 0 null 0 null);
     width: 46px;
 	margin: 0px;
-	text-align: center; 
+	text-align: center;
     border: 0px solid #999999;
 	border-radius: 0px;
 }
@@ -394,28 +408,28 @@ button {
 	color: #fff;
 	height: 0;
     opacity: 0;
-	
+
 	&.active {
 		@include transition(opacity .5s ease-in);
 		opacity: 1;
 		height: auto;
 	}
-	
+
 	& p {
 		font-size: 90%;
 		font-weight: 100;
 		line-height: 1.5;
 	}
-	
+
 	& a {
 		pointer-events: all;
 		color: #a9fdff;
 	}
-	
+
 	& input {
 		pointer-events: all;
 	}
-	
+
 	&:after {
 		content: "";
 		position: absolute;
@@ -425,20 +439,20 @@ button {
 		display: block;
 		width: 0;
 	}
-	
+
 	&.language {
 		@include position(absolute, 45px 165px null null);
 		background: #7b3131;
-		
+
 		&:after {
 			border-bottom-color: #7b3131;
 		}
 	}
-	
+
 	&.terms {
 		@include position(absolute, 42px -33px null null);
 		background: #317b56;
-		
+
 		&:after {
 			border-bottom-color: #317b56;
 		}
@@ -448,7 +462,7 @@ button {
 .warning {
 	line-height: 0.8;
 	font-size: 90%;
-	
+
 	.dark & { color: #ef5e5e; }
 	.light & { color: #ffc860; }
 }
@@ -470,14 +484,14 @@ button {
 	header .left {
 		margin-left: 5px;
 	}
-	
+
 	header .left h1 {
 		display: none;
 	}
-	
+
 	header .right {
 	}
-	
+
 	#languages {
 		width: 40%;
 	}

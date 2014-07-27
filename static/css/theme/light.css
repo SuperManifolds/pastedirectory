@@ -10,7 +10,6 @@
 .cm-s-light.CodeMirror {
 	font-family: 'Menlo', 'Inconsolata', monospace;
 	font-size: 12px;
-	min-height: 100%;
 	line-height: 1.5;
     background: #fffefe;
     color: #000;
@@ -63,8 +62,4 @@
 .cm-s-light .CodeMirror-matchingbracket {
   font-weight: bold;
   color: #5f5f5f !important;
-}
-.CodeMirror-scroll {
-  overflow-y:auto;
-  overflow-x: auto;
 }

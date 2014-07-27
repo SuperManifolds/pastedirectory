@@ -5,23 +5,24 @@
 		<meta name=viewport content="width=device-width, initial-scale=1">
 		% assets filters="cssmin", output="gen/style.css", "css/style.css", "css/codemirror.css", "css/googlefonts-inconsolata.css", "css/googlefonts-roboto.css"
 		<link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}" />
+        <script src="{{ static_url_for('web_components/platform/platform.js') }}"></script>
+        <link rel="import" href="{{ static_url_for('web_components/core-header-panel/core-header-panel.html') }}">
+        <link rel="import" href="{{ static_url_for('web_components/core-icon-button/core-icon-button.html') }}">
+        <link rel="import" href="{{ static_url_for('web_components/core-toolbar/core-toolbar.html') }}">
 		% endassets
 		{% endblock %}
 	</head>
-	<body class="{{theme}}">
-		<div id="container">
-			<header>
-				{% block header %}
-				{% endblock %}
-			</header>
-			<main>
-				{% block content %}
-				{% endblock %}
-			</main>
-			<footer>
-				
-			</footer>
-		</div>
+	<body fullbleed vertical layout>
+		<core-header-panel mode="waterfall-tall" flex>
+            <core-toolbar class="tall animate">
+                <core-icon-button icon="arrow-back"></core-icon-button>
+                <div class="bottom ident title">
+                    Paste Directory
+                </div>
+            </core-toolbar>
+            {% block content %}
+            {% endblock %}
+        </core-header-panel>
 		{% block scripts %}
 		{% endblock %}
 	</body>

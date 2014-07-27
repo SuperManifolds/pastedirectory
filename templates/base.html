@@ -2,59 +2,10 @@
 
 {% block head %}
 {{ super() }}
-% if theme == 'dark'
-<link rel="stylesheet" type="text/css" href="{{ static_url_for('css/theme/dark.css') }}" data-rel="theme" />
-% else
 <link rel="stylesheet" type="text/css" href="{{ static_url_for('css/theme/light.css') }}" data-rel="theme" />
-% endif
 <meta name="syntax-language" data="{{ mirrorlang.API }}" >
 {% endblock %}
 
-{% block header %}
-<div class="left">
-	<a href="/">
-		<img src="{{ static_url_for('img/pastedirectory.svg') }}" />
-		<h1>Paste Directory</h1>
-	</a>
-</div>
-<div class="right">
-	{% block header_right %}
-	{% include 'postOptions.html' %}
-	<button class="large" id="submitButton">{{ _('Submit') }}</button>
-	{% endblock %}
-</div>
-<div id="more">
-	<h3>{{ _('Options') }}</h3>
-	<input type="checkbox" name="self_destruct" id="self_destruct" />
-	<label for="self_destruct">{{ _('Erase 5 minutes after opening') }}</label><br />
-	<label for="encrypt">{{ _('Encryption') }}</label><br/>
-	<input type="password" name="encrypt" id="encrypt" />
-	<span class="warning">{{ _('The data cannot be recovered if you lose your password.') }}</span><br /><br/>
-	<label for="onoffswitch">Change Theme: </label>
-	<div class="onoffswitch">
-	<input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch">
-	<label class="onoffswitch-label" for="myonoffswitch">
-		<div class="onoffswitch-inner">
-			<div class="onoffswitch-active">
-				<div class="onoffswitch-switch">{{ _('Light') }}</div>
-			</div>
-			<div class="onoffswitch-inactive">
-				<div class="onoffswitch-switch">{{ _('Dark') }}</div>
-			</div>
-		</div>
-	</label>
-</div>
-</div>
-<blockquote class="balloon language">
-	<p>{{ _('The syntax of your paste does not match a recognized language, please manually specify a language.') }}</p>
-</blockquote>
-<blockquote class="balloon terms">
-	{{ _('To use our service you need to agree to our') }}
-	<p>To use our service you need to agree to our <br />
-	<a href="/terms" target="_blank">{{ _('Terms and Conditions') }}</a>
-	<label><input type="checkbox" name="terms" />{{ _('I agree') }}</label></p>
-</blockquote>
-{% endblock %}
 
 {% block scripts %}
 {{ super() }}

@@ -12,9 +12,10 @@
 
 {{ super() }}
 {% endblock %}
- 
+
 {% block content %}
-% if post.self_destruct and post.author != requestaddress 
+{{ super() }}
+% if post.self_destruct and post.author != requestaddress
 <div class="notice">{{ _('This paste has been configured to be automatically destroyed 5 minutes after it has been opened..') }}</div>
 % endif
 <textarea id="loadview">{{ post.data }}</textarea>

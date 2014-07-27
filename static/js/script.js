@@ -1,38 +1,29 @@
 /* jslint browser: true */
 /* global CodeMirror */
 var currentLanguage = '';
-
-var getTheme = readCookie("theme");
-if (!getTheme) getTheme = "dark";
-if (getTheme === "light") document.getElementById("myonoffswitch").checked = true;
-document.getElementById("myonoffswitch").addEventListener("click", onThemeSwitch, false);
 var estimator = new LanguageEstimator();
 
-var mq = window.matchMedia('(max-width: 675px)');
-
-mq.addListener(matchMediaEvent);
-matchMediaEvent(mq);
 var myCodeMirror;
 
 var loadview = document.getElementById("loadview");
 if (loadview) {
-	myCodeMirror = CodeMirror(document.querySelector("main"), {
-		theme: getTheme,
+	myCodeMirror = CodeMirror(document.querySelector("core-header-panel"), {
+		theme: "light",
 		value: decodeURIComponent(loadview.value),
 		lineWrapping: true,
 		lineNumbers: true,
 		styleActiveLine: true,
 		matchBrackets: true,
 		autofocus: true,
-		viewportMargin: 5000,
+		viewportMargin: Infinity,
 		makeLinksClickable: true
 	});
 	if (window.location.hash) {
 		jumpToLine(window.location.hash.substring(1));
 	}
 } else {
-	myCodeMirror = CodeMirror(document.querySelector("main"), {
-		theme: getTheme,
+	myCodeMirror = CodeMirror(document.querySelector("core-header-panel"), {
+		theme: "light",
 		lineWrapping: true,
 		styleActiveLine: true,
 		matchBrackets: true,
@@ -70,35 +61,6 @@ myCodeMirror.getWrapperElement().addEventListener("paste", function(e) {
 	}, 50);
 });
 
-function matchMediaEvent(e) {
-	var expireContainer = document.getElementById("expireContainer");
-	var rawButton = document.getElementById("rawButton");
-	if (e.matches) {
-		var moreContainer = document.getElementById("more");
-		var expireHtml = expireContainer.cloneNode(true);
-		expireContainer.parentNode.removeChild(expireContainer);
-		moreContainer.appendChild(expireHtml);
-		moreContainer.appendChild(themeHtml);
-		if (rawButton) {
-			var rawHtml = rawButton.cloneNode(true);
-			rawButton.parentNode.removeChild(rawButton);
-			moreContainer.appendChild(rawHtml);
-		}
-		expireHtml.firstChild.addEventListener("change", onExpireChange, false);
-	} else {
-		var headerContainer = document.querySelector("header .right");
-		var expireHtml = expireContainer.cloneNode(true);
-		expireContainer.parentNode.removeChild(expireContainer);
-		headerContainer.insertBefore(expireContainer,headerContainer.firstChild);
-		if (rawButton) {
-			var rawHtml = rawButton.cloneNode(true);
-			rawButton.parentNode.removeChild(rawButton);
-			headerContainer.insertBefore(rawHtml, headerContainer.firstChild);
-		}
-		expireHtml.firstChild.addEventListener("change", onExpireChange, false);
-
-	}
-}
 
 function getOptionTextByValue(options, value) {
 	for (var i = 0, len = options.length; i < len; i++) {
@@ -147,12 +109,12 @@ function loadLanguage(language) {
 }
 
 
-document.getElementById("languages").addEventListener("change", function(e) {
+/*document.getElementById("languages").addEventListener("change", function(e) {
 	document.querySelector(".balloon").classList.remove("active");
 	currentLanguage = e.target.value;
 	createCookie("language", e.target.value, 3652);
 	loadLanguage(e.target.value);
-}, false);
+}, false);*/
 
 
 function onExpireChange(e) {
@@ -174,7 +136,7 @@ function onThemeSwitch(e) {
 	createCookie("theme", newTheme, 3652);
 }
 
-var submitButton = document.getElementById("submitButton");
+/*var submitButton = document.getElementById("submitButton");
 submitButton.addEventListener("click", function(e) {
 	if (myCodeMirror.getValue().length == 0) {
 		alert("The paste can not be empty.");
@@ -216,18 +178,8 @@ submitButton.addEventListener("click", function(e) {
 	if (selfDestruct) data.append("self_destruct", 1);
 	if (encryptionKey) data.append("encrypt", encryptionKey);
 	xhr.send(data);
-}, false);
+}, false);*/
 
-
-document.getElementById("nav-toggle").addEventListener("click", function(e) {
-	if (e.target.classList.contains("active")) {
-		e.target.classList.remove("active");
-		document.getElementById("more").style.display = "none";
-	} else {
-		e.target.classList.add("active");
-		document.getElementById("more").style.display = "block";
-	}
-}, false);
 
 function jumpToLine(line) {
 	if (line && !isNaN(Number(line))) {
